@@ -1,0 +1,56 @@
+
+
+<view class="addressEdit">
+    <view class='picker' hidden='{{show}}'>
+        <view class='btn-group'>
+            <view bindtap='cancel'>取消</view>
+            <view bindtap='sure'>确定</view>
+        </view>
+        <!-- <picker class="picker" mode="multiSelector" bindchange="bindPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="{{'location_name'}}">
+            <text class="menu_text">{{multiArray[2][multiIndex[2]].location_name}}</text>
+            <icon class="iconfont icon-xiala"></icon>
+          </picker> -->
+  
+        <picker-view bindchange="changecity">
+            <picker-view-column>
+                <view wx:for="{{multiArray[0]}}" value="{{multiIndex[0]}}" class='item' data-id="{{item.area_id}}">{{item.area_name}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{multiArray[1]}}" value="{{multiIndex[1]}}" class='item' data-id="{{item.area_id}}">{{item.area_name}}</view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{multiArray[2]}}" value="{{multiIndex[2]}}" class='item' data-id="{{item.area_id}}">{{item.area_name}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+    <view class="addressEdit-block">
+        <view class="addressEdit-title">收货人</view>
+        <input bindconfirm="setConsignee" bindblur="setConsignee" class="addressEdit-text" value="{{consignee}}"/>
+    </view>
+    <view class="addressEdit-block">
+        <view class="addressEdit-title">所在地区</view>
+        <view bindtap='showPicker' class="addressEdit-text  after-arrow-right">
+            <block wx:if="{{flag}}">
+                {{provinceIndex}}-
+                {{cityIndex}}-
+                {{countyIndex}}
+            </block>
+            <block wx:else></block>
+        </view>
+    </view>
+    <view class="addressEdit-block">
+        <view class="addressEdit-title">手机号码</view>
+        <input bindconfirm="setPhoneNum" bindblur="setPhoneNum" class="addressEdit-text" value="{{phoneNum}}"/>
+    </view>
+    <view class="addressEdit-block">
+        <view class="addressEdit-title">详细地址</view>
+        <textarea bindconfirm="setAddress" bindblur="setAddress" class="addressEdit-text addressEdit-textarea" value="{{address}}" />
+    </view>
+    <view class="addressEdit-block switch-block" wx:if="{{isshop == 0}}">
+            <view class="addressEdit-title">设为默认</view>
+            <switch checked="{{ischecked}}"  bindchange="switchChecked" color="#FF3E3E"/>
+    </view>
+    <view class="save-address" bindtap="saveAddress">
+            <view  data-isshop="{{isshop}}">{{isshopText}}</view>
+    </view>
+</view>

@@ -1,0 +1,75 @@
+{
+    "pages": [
+        "pages/selfShop/index/index",
+        "pages/selfShop/tourDiy/tourDiy",
+        "pages/selfShop/sharePage/sharePage",
+        "pages/selfShop/sharePage/shareGroup/shareGroup",
+        "pages/selfShop/myCenter/index",
+        "pages/login/login",
+        "pages/selfShop/index/search/search",
+        "pages/selfShop/index/searchList/searchList",
+        "pages/selfShop/index/secondsKill/secondsKill",
+        "pages/selfShop/index/flashSales/flashSales",
+        "pages/selfShop/goodsDetail/goodsDetail",
+        "pages/selfShop/foreshowDetail/foreshowDetail",
+        "pages/selfShop/lootDetail/lootDetail",
+        "pages/selfShop/buyDetail/buyDetail",
+        "pages/selfShop/buyDetail/commentList/commentList",
+        "pages/selfShop/cart/cart",
+        "pages/selfShop/cart/orderConfirm/orderConfirm",
+        "pages/selfShop/cart/orderAssemble/orderAssemble",
+        "pages/selfShop/cart/orderConfirm/paymentSuccess/paymentSuccess",
+        "pages/selfShop/myCenter/address/addressEdit/addressEdit",
+        "pages/selfShop/myCenter/address/addressMan/addressMan",
+        "pages/selfShop/myCenter/address/addressManShop/addressManShop",
+        "pages/selfShop/myCenter/coupon/coupon",
+        "pages/selfShop/myCenter/order/order",
+        "pages/selfShop/myCenter/pushComment/pushComment",
+        "pages/selfShop/myCenter/orderConfirm/orderConfirm",
+        "pages/selfShop/myCenter/express/express",
+        "pages/selfShop/myCenter/collection/collection",
+        "pages/selfShop/index/newMan/newMan",
+        "pages/selfShop/myCenter/coupon/getCoupon/getCoupon",
+        "pages/selfShop/jumpexternal/jumpexternal",
+        "pages/selfShop/index/searchClassList/searchClassList"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "拼拼侠批发商城",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#fff",
+        "onReachBottomDistance": 50
+    },
+    "tabBar": {
+        "color": "#858585",
+        "selectedColor": "#333",
+        "backgroundColor": "#F8F8F8",
+        "list": [{
+                "pagePath": "pages/selfShop/index/index",
+                "text": "首页",
+                "iconPath": "images/icon_save_nor.png",
+                "selectedIconPath": "images/icon_save_show.png"
+            },
+            {
+                "pagePath": "pages/selfShop/myCenter/order/order",
+                "text": "订单详情",
+                "iconPath": "images/oder@2x.png",
+                "selectedIconPath": "images/order-1@2x.png"
+            },
+            {
+                "pagePath": "pages/selfShop/cart/cart",
+                "text": "购物车",
+                "iconPath": "images/cartBar@2x.png",
+                "selectedIconPath": "images/cartBar-1@2x.png"
+            },
+            {
+                "pagePath": "pages/selfShop/myCenter/index",
+                "text": "个人中心",
+                "iconPath": "images/icon_mine_nor.png",
+                "selectedIconPath": "images/icon_mine_show.png"
+            }
+        ]
+    }
+
+}

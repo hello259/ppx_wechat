@@ -1,0 +1,148 @@
+.searchList{
+  padding:0 26rpx 20rpx;
+}
+.searchList-head{
+  position: fixed;
+  width:100%;
+  left:0;
+  top:0;
+  background: #fff;
+  z-index: 100;
+}
+/*搜索框*/
+.search{
+  height: 100%;
+  background-color: #fff;
+  padding: 0 30rpx;
+}
+.input{
+  display:flex;
+  height: 66rpx;
+  line-height: 66rpx;
+  border-radius: 100px;
+}
+.input .search_input{
+  display:flex;
+  width: 95%;
+  height: 66rpx;
+  box-sizing: border-box;
+  line-height: 66rpx;
+  border:1px solid #F2F2F2;
+  border-radius: 100px;
+  background-color: #F3F3F3;
+  padding: 22rpx;
+  align-items: center;
+  /* justify-content: center; */
+  margin:0 auto;
+}
+.search_input image{
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 10rpx;
+}
+.search_input input{
+  outline: none;
+  font-size: 14px;
+  color: #888;
+  width:100%;
+}
+.input .cancel{
+ font-size: 12px;
+ text-align: center;
+ color: #000;
+ flex: 1;
+}
+/* 筛选头 */
+.list-screen{
+  display: flex;
+  color:#333;
+  font-size: 26rpx;
+  /* margin-top:20rpx; */
+  /* padding-bottom:20rpx; */
+  border-bottom:1px solid #F3F3F2;
+}
+.list-screen .list-screen-item{
+  padding-top:20rpx;
+  padding-bottom:20rpx;
+  width:25%;
+  text-align: center;
+  position: relative;
+}
+.list-screen .list-screen-item.isstock{
+  color:#FF4444;
+}
+.list-screen .list-screen-item .screen-arrow{
+  position: absolute;
+  color:#D8D8D8;
+  font-size:20rpx;
+}
+.list-screen .list-screen-item .screen-arrow.active{
+  position: absolute;
+  color:red;
+}
+.list-screen .list-screen-item .arrow-top{
+  top:13rpx;
+  transform:rotate(90deg);
+}
+.list-screen .list-screen-item .arrow-bottom{
+  top:27rpx;
+  transform:rotate(90deg);
+}
+.res-list{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 140rpx;
+  flex-wrap:wrap;
+  /* padding: 0 26rpx; */
+  box-sizing: border-box;
+}
+.res-list .res-list-item{
+  width:339rpx;
+  margin-top:26rpx;
+  border:1px solid rgba(221,221,221,1);
+  border-radius:10px;
+  overflow: hidden;
+}
+.res-list .res-list-item .res-list-item-msg{
+  padding:20rpx 11rpx 13rpx;
+  min-width: 0;
+  flex: 1; 
+}
+.res-list .res-list-item .res-list-item-msg .res-list-item-msg-title{
+  color:#333;
+  font-size: 28rpx;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+.res-list .res-list-item .res-list-item-msg .res-list-item-msg-label{
+  color:#999;
+  font-size: 20rpx;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+padding-bottom:5rpx;
+}
+.res-list .res-list-item .res-list-item-msg .res-list-item-msg-price{
+  color:#FF3E3E;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.res-list .res-list-item .res-list-item-msg .res-list-item-msg-price-title{
+  color:#FF4444;
+  font-size: 20rpx;
+  border:1px solid #FF4444;
+  padding:0 5rpx;
+  position: relative;
+  top:-2rpx;
+}
+.res-list .res-list-item .res-list-item-msg .res-list-item-msg-bottom{
+  display: flex;
+  justify-content: space-between;
+  color:#999999;
+  font-size: 20rpx;
+}
+.res-list .res-list-item .res-list-item-msg .res-list-item-msg-bottom .res-list-item-msg-marketPrice{
+  text-decoration:line-through;
+}

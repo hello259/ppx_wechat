@@ -1,0 +1,25 @@
+<view class="addressMan">
+    <view class="address-list">
+        <view class="address-list-item" wx:for="{{addressList}}">
+            <view>
+                <view class="address-list-item-msg">
+                    <view  class="address-list-item-msg-head">
+                        <image wx:if="{{item.is_default==1?true:false}}" style="width:56rpx;height:30rpx" src="../../../../../images/myCenter/adrs_word_moren.png" />
+                    </view>
+                    <view>
+                        <view class="address-nameAndPhone">
+                            <view class="address-name">{{item.true_name}}</view>
+                            <view>{{item.mob_phone}}</view>
+                        </view>
+                        <view>{{item.area_info}}{{item.address}}</view>
+                    </view>
+                </view>
+                <view class="address-btn">
+                    <view data-id="{{item.address_id}}" class="address-edit-btn" bindtap="toEdit">编辑</view>
+                    <view data-id="{{item.address_id}}" class="address-del-btn" bindtap="delAddress">删除</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="add-address" bindtap="toadd">+ 添加收货地址</view>
+</view>

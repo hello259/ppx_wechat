@@ -1,0 +1,39 @@
+<!--pages/selfShop/buyDetail/commentList/commentList.wxml-->
+<view class="comment-list">
+  <view class="comment-title">全部商品评价({{commentList.evaluate_list.length}})</view>
+  <!-- 所有评论 -->
+  <view class="comment-all" wx:if="{{commentList.evaluate_list.length != 0}}">
+    <view 
+    class="comment-detail" 
+    wx:for="{{commentList.evaluate_list}}"
+    wx:key="index">
+      <!-- 用户头像和名字 -->
+      <view class="comment-detail-title">
+        <image src="{{item.geval_goodsimage}}"></image>
+        <view class="userName">{{item.geval_frommembername}}</view>
+      </view>
+
+      <!-- 评价时间和规格 -->
+      <view class="comment-detail-time">
+        <text class="time">{{item.geval_addtime}}</text>
+        <text class="standar"> {{item.geval_goodsname}}</text>
+      </view>
+
+      <!-- 评价内容和图片 -->
+      <view class="comment-detail-content">
+        <view class="content">{{item.geval_content}}</view>
+        <view 
+        class="comment-detail-img" 
+        >
+          <image 
+          wx:for="{{item.geval_image}}" wx:for-item="subItem" 
+        wx:for-index="subIndex" 
+        wx:key="subIndex" src="{{subItem}}"/>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评论为空 -->
+  <view class="blank" wx:else>暂无评论喔~~</view>
+</view>

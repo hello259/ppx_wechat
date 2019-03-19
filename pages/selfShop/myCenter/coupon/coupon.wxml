@@ -1,0 +1,104 @@
+<view class="order-page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                    <!-- <view class="no-order">
+                        <image style="width:178rpx;height:132rpx;" src="../../../../images/myCenter/coupon.png"></image>
+                        <view class="no-order-title1">没有券？</view>
+                        <view class="no-order-title2">去领券中心看看吧</view>
+                        <view class="no-order-find-coupon">去看看</view>
+                    </view> -->
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{couponList}}">
+                            <view class="coupon-price-block">
+                                <view class="cro_right_bottom"></view>
+                                <view class="cro_right_top"></view>
+                                <view class="coupon-price">
+                                    <text class="coupon-price-symbol">￥</text>
+                                    <text class="coupon-price-text">{{item.voucher_price}}</text>
+                                </view>
+                                <view class="coupon-price-canuse">满{{item.voucher_limit}}元可用</view>
+                            </view>
+                            <view class="coupon-line"></view>
+                            <view class="coupon-msg-block">
+                                <view class="coupon-msg-block-left">
+                                    <view class="coupon-msg-block-left-title">{{item.voucher_title}}</view>
+                                    <view class="coupon-msg-block-left-time">{{item.voucher_start_date}}-{{item.voucher_end_date}}</view>
+                                </view>
+                                <!-- <view class="coupon-msg-block-right">
+                                    <view class="coupon-msg-block-right-btn">立即使用</view>
+                                </view> -->
+                                <view class="cro_left_bottom"></view>
+                                <view class="cro_left_top"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{couponList}}">
+                            <view class="coupon-price-block">
+                                <view class="cro_right_bottom"></view>
+                                <view class="cro_right_top"></view>
+                                <view class="coupon-price">
+                                    <text class="coupon-price-symbol">￥</text>
+                                    <text class="coupon-price-text">{{item.voucher_price}}</text>
+                                </view>
+                                <view class="coupon-price-canuse">满{{item.voucher_limit}}元可用</view>
+                            </view>
+                            <view class="coupon-line"></view>
+                            <view class="coupon-msg-block">
+                                <view class="coupon-msg-block-left">
+                                    <view class="coupon-msg-block-left-title">{{item.voucher_title}}</view>
+                                    <view class="coupon-msg-block-left-time">{{item.voucher_start_date}}-{{item.voucher_end_date}}</view>
+                                </view>
+                                <!-- <view class="coupon-msg-block-right">
+                                    <view class="coupon-msg-block-right-btn">立即使用</view>
+                                </view> -->
+                                <view class="cro_left_bottom"></view>
+                                <view class="cro_left_top"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{couponList}}">
+                            <view class="coupon-price-block">
+                                <view class="cro_right_bottom"></view>
+                                <view class="cro_right_top"></view>
+                                <view class="coupon-price">
+                                    <text class="coupon-price-symbol">￥</text>
+                                    <text class="coupon-price-text">{{item.voucher_price}}</text>
+                                </view>
+                                <view class="coupon-price-canuse">满{{item.voucher_limit}}元可用</view>
+                            </view>
+                            <view class="coupon-line"></view>
+                            <view class="coupon-msg-block">
+                                <view class="coupon-msg-block-left">
+                                    <view class="coupon-msg-block-left-title">{{item.voucher_title}}</view>
+                                    <view class="coupon-msg-block-left-time">{{item.voucher_start_date}}-{{item.voucher_end_date}}</view>
+                                </view>
+                                <!-- <view class="coupon-msg-block-right">
+                                    <view class="coupon-msg-block-right-btn">立即使用</view>
+                                </view> -->
+                                <view class="cro_left_bottom"></view>
+                                <view class="cro_left_top"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="more-coupon-btn" bindtap="toGetCoupon">更多优惠券，前往领券中心领取</view>
+</view>

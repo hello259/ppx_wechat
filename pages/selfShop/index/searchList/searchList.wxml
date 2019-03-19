@@ -1,0 +1,55 @@
+<!-- <scroll-view style="height:100%;" scroll-y='true' scroll-top="{{scrollTop.scroll_top}}" bindscroll="scrollTopFun" bindscrolltolower="scrollbottom"> -->
+<view class="searchList">
+
+    <view class="searchList-head">
+        <!-- 搜索框 -->
+        <view class='input'>
+            <view class='search_input'>
+                <image bindtap='handleSearch' src="../../../../images/index/glass.png" />
+                <input type="text" value="{{searchValue}}" bindinput="searchValueInput" confirm-type="search"
+                    bindconfirm="handleSearch" placeholder="{{placeholder}}" bindfocus="onFocus" bindblur="onBlur"/>
+            </view>
+        </view>
+        <!-- 筛选头 -->
+        <view class="list-screen">
+            <view bindtap="screen" data-type="sales" class="list-screen-item">
+                销量
+                <text decode="{{true}}" class="screen-arrow arrow-top {{salesTop}}">&nbsp;&nbsp;&lt;</text>
+                <text decode="{{true}}" class="screen-arrow arrow-bottom {{salesBottom}}">&nbsp;&nbsp;&gt;</text>
+            </view>
+            <view bindtap="screen" data-type="new" class="list-screen-item">
+                新品
+                <text decode="{{true}}" class="screen-arrow arrow-top {{newTop}}">&nbsp;&nbsp;&lt;</text>
+                <text decode="{{true}}" class="screen-arrow arrow-bottom {{newBottom}}">&nbsp;&nbsp;&gt;</text>
+            </view>
+            <view bindtap="screen" data-type="price" class="list-screen-item">
+                价格
+                <text decode="{{true}}" class="screen-arrow arrow-top {{priceTop}}">&nbsp;&nbsp;&lt;</text>
+                <text decode="{{true}}" class="screen-arrow arrow-bottom {{priceBottom}}">&nbsp;&nbsp;&gt;</text>
+            </view>
+            <view bindtap="screen" data-type="stock" class="list-screen-item {{isstock}}">显示有货</view>
+        </view>
+    </view>
+
+    <view class="res-list">
+        <block wx:for="{{searchList}}">
+            <view class="res-list-item" data-id="{{item.goods_id}}" bindtap="toDetail">
+                <image style="width: 100%; height: 339rpx;" mode="" src="{{item.goods_image_url}}"></image>
+                <view class="res-list-item-msg">
+                    <view class="res-list-item-msg-title">{{item.goods_name}}</view>
+                    <!-- <view class="res-list-item-msg-label">萨克等哈就开始搭建后打卡介绍大家撒科打诨</view> -->
+                    <view>
+                        <text decode="true" class="res-list-item-msg-price">￥{{item.promotion_price}}&nbsp;&nbsp;</text>
+                        <text class="res-list-item-msg-price-title">批发价</text>
+                    </view>
+                    <view class="res-list-item-msg-bottom">
+                        <view class="res-list-item-msg-marketPrice">￥{{item.goods_marketprice}}</view>
+                        <view class="">{{item.applause_rate}}%好评</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+
+</view>
+<!-- </scroll-view> -->

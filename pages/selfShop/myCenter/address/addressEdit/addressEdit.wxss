@@ -1,0 +1,120 @@
+
+@import "../../../../../utils/weui.wxss";
+.addressEdit{
+  background: #F2F2F2;
+  height:100%;
+}
+.addressEdit .addressEdit-title{
+  width:165rpx;
+}
+.addressEdit .addressEdit-text{
+  flex:1;
+}
+.addressEdit .addressEdit-block{
+  padding:31rpx 27rpx 30rpx;
+  border-top:1px solid #DDDDDD;
+  display: flex;
+  color:#333;
+  font-size: 28rpx;
+  background: #fff;
+}
+.addressEdit .switch-block{
+  justify-content: space-between;
+}
+.addressEdit .addressEdit-textarea{
+  height:150rpx;
+  overflow: scroll;
+}
+.save-address{
+  width:689rpx;
+  height:88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#fff;
+  font-size:34rpx;
+  background: #FF3E3E;
+  margin:39rpx auto 0;
+}
+/*地区三级联动*/
+.list{
+  margin-top: 10rpx;
+  display: flex;
+}
+
+.list-left{
+  font-size: 30rpx;
+  margin-right: 50rpx;
+  color:#888;
+}
+.list-right{
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: inline-block;
+  width: 500rpx;
+}
+picker-view{
+  height: 560rpx;
+  width: 750rpx;
+}
+
+.picker{
+  z-index: 10000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 560rpx;
+  display: flex;
+  background: #fff;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 750rpx;
+  padding: 0 43rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+}
+.btn-group view:nth-child(1){
+  width: 146rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  text-align: center;
+  background-color: #fff;
+  color: #FF3131;
+  border: 1px solid #F2F2F2;
+  border-radius: 100px;
+}
+.btn-group view:nth-child(2){
+  width: 146rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  text-align: center;
+  background-color: #FF3131;
+  color: #fff;
+  border: 1px solid #F2F2F2;
+  border-radius: 100px;
+}
+
+.item{
+  line-height: 40rpx;
+  text-align: center;
+}
+
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100%;
+  background: rgba(0, 0, 0, .4);
+  z-index: 10;
+}
+

@@ -1,0 +1,31 @@
+<view class="searchList">
+    <view class="banner-img">
+        <image src="{{resList.share_img}}"/>
+        
+    </view>
+    <view class="banner-text">{{resList.xianshi_explain}}</view>
+    <view class="res-list" style="margin-top:-{{marginTop}}">
+        
+        <view class="res-list-detail">
+            <block wx:for="{{resList.xianshi_goods_info}}">
+                <view class="res-list-item" data-id="{{item.goods_id}}" bindtap="toDetail">
+                    <image style="width: 100%; height: 339rpx;" mode="aspectFill" src="{{item.goods_image_url}}"></image>
+                    <view class="res-list-item-msg">
+                        <view class="res-list-item-msg-title">{{item.goods_name}}</view>
+                        <!-- <view class="res-list-item-msg-label">萨克等哈就开始搭建后打卡介绍大家撒科打诨</view> -->
+                        <view>
+                            <text decode="true" class="res-list-item-msg-price">￥{{item.xianshi_price}}&nbsp;&nbsp;</text>
+                            <text class="res-list-item-msg-price-title">批发价</text>
+                        </view>
+                        <view class="res-list-item-msg-bottom">
+                            <view class="res-list-item-msg-marketPrice">￥{{item.market_price}}</view>
+                            <view class="">{{item.applause_rate}}%好评</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+
+</view>
+<!-- </scroll-view> -->

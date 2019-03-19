@@ -1,0 +1,53 @@
+<!--  -->
+<view class="pushComment">
+    <view class="pushComment-block-top" wx:for="{{goodsList}}" wx:for-index="index">
+        <view class="star-block">
+            <view class="comment1-description" style="display:flex;flex-direction:row;">
+                <view>
+                    <image style="width:60rpx;height:60rpx;margin-right:22rpx" src="{{item.goods_image_url}}"></image>
+                </view>
+                <view class="comment1-description1">描述相符</view>
+                <view class="star-pos" style="display:flex;flex-direction:row;">
+                    <view class="starsM  {{allMSg[index].flag2>=1? '': 'hideStar'}}" bindtap="changeColor11" data-starindex="{{index}}">
+                        <image class="bright-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_show.png" />
+                        <image class="dark-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_nor.png" />
+                    </view>
+                    <view class="starsM  {{allMSg[index].flag2>=2? '': 'hideStar'}}" bindtap="changeColor12" data-starindex="{{index}}">
+                        <image class="bright-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_show.png" />
+                        <image class="dark-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_nor.png" />
+                    </view>
+                    <view class="starsM  {{allMSg[index].flag2>=3? '': 'hideStar'}}" bindtap="changeColor13" data-starindex="{{index}}">
+                        <image class="bright-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_show.png" />
+                        <image class="dark-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_nor.png" />
+                    </view>
+                    <view class="starsM  {{allMSg[index].flag2>=4? '': 'hideStar'}}" bindtap="changeColor14" data-starindex="{{index}}">
+                        <image class="bright-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_show.png" />
+                        <image class="dark-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_nor.png" />
+                    </view>
+                    <view class="starsM  {{allMSg[index].flag2>=5? '': 'hideStar'}}" bindtap="changeColor15" data-starindex="{{index}}">
+                        <image class="bright-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_show.png" />
+                        <image class="dark-star" style="width:33rpx;height:32rpx;" src="../../../../../images/myCenter/evealuate_icon_star_nor.png" />
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="textarea-block">
+            <textarea data-textindex="{{index}}" bindblur="setText" value="{{allMSg[index].comment}}" maxlength="-1" placeholder-style="color:#868686" placeholder="宝贝满足你的期待吗？说说你的使用心得，分享给想买的他们吧" />
+            <view class="clearfix file-block">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                    <block wx:for="{{allMSg[index].files}}" wx:key="*this" wx:for-index="imgindex">
+                        <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}" data-imgIndex="{{index}}">
+                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                        </view>
+                    </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                    <view class="weui-uploader__input" bindtap="chooseImage" data-goodsId="{{item.goods_id}}" data-num="{{index}}"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="push-btn" bindtap="pushCommentBtn">
+            发布
+    </view>
+</view>

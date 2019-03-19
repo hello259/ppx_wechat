@@ -1,0 +1,81 @@
+<view class="tour-diy">
+    <!-- 轮播图 -->
+    <view class="swiper">
+        <swiper bindchange="swiperChange" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" indicator-active-color="#F91334" duration="{{duration}}" circular="true">
+            <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}">
+                <image src="{{item.levelD}}" class="slide-image" width="355" height="150" />
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <!-- 商品价格 -->
+    <view class="goods-price">
+        <view class="price">
+            <text class="unit">￥</text>
+            <text class="newPrice">{{goodsDetail.goods_info.goods_price}}</text>
+            <text class="txts">起</text>
+            <text class="oldPrice">￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+        </view>
+        <view class="turnover">
+            <!-- 月销量{{goodsDetail.goods_info.goods_salenum}}件 -->
+            月销量{{randomNum}}件
+        </view>
+    </view>
+
+    <!-- 商品名称 -->
+    <view class="goods-name">
+        {{goodsDetail.goods_info.goods_name}}
+    </view>
+
+
+
+    <!-- 商品评价 -->
+    <view class="goods-evaluate" style="display: none">
+        <view class="evaluate-title">
+            <view class="evaluate-num">商品评价({{goodsDetail.goods_evaluate.length}})</view>
+            <view class="see-all">查看全部</view>
+        </view>
+        <view>
+
+            <view wx:if="{{goodsDetail.goods_evaluate.length != 0}}">
+                <view class="evaluate-details" wx:for="{{goodsDetail.goods_evaluate}}" wx:key="{{index}}">
+                    <view class="user-head">
+                        <image src="{{item.member_avatar}}"></image>
+                        <text>{{item.geval_frommembername}}</text>
+                    </view>
+                    <view class="evaluate">{{item.geval_content}}</view>
+                    <view class="evaluate-time">2018-5-5</view>
+                </view>
+            </view>
+            <view wx:else class="empty">暂无商品评论</view>
+        </view>
+
+
+    </view>
+
+
+    <!-- 图片间隔 -->
+    <!-- <view class="interval">
+        <text class="first">——</text>
+        <text class="iconfont icon-tupian"></text>
+        <text> 详情</text>
+        <text class="last">——</text>
+    </view> -->
+
+    <!--  图片详细 -->
+    <view class="img-details">
+        <text class="img-details-title">商品详情</text>
+        <view wx:if="{{goodsDetail.goods_info.body.length != 0}}" class="images">
+            <image mode="widthFix" wx:for="{{goodsDetail.goods_info.body}}" wx:key="{{index}}" src="{{item.value}}" alt="" />
+        </view>
+        <view wx:else class="empty">抱歉哦，暂无详情图</view>
+    </view>
+
+
+
+
+
+
+
+
+</view>

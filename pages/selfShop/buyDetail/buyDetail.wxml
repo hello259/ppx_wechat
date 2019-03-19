@@ -1,0 +1,360 @@
+<view class="tour-diy">
+    <!-- 轮播图 -->
+    <view class="swiper">
+        <swiper bindchange="swiperChange" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
+            indicator-active-color="#F91334" duration="{{duration}}" current="0" circular="true">
+            <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}">
+                <image src="{{item}}" class="slide-image" width="355" height="150" mode="aspectFit"/>
+            </swiper-item>
+        </swiper> 
+
+        <!-- <view class="img-index">
+          <text>{{current}} /</text>
+          <text>{{imgUrls.length}}</text>
+      </view> -->
+    </view>
+
+    <!-- 正常购买商品价格 -->
+    <view class="goods-price" wx:if="{{goodsState == 1}}">
+        <view class="goods-price-bgi"> 批发价 </view>
+        <view class="price">
+            <text class="unit">￥</text>
+            <text class="newPrice">{{goodsDetail.goods_info.promotion_price || goodsDetail.goods_info.goods_price}}</text>
+            <text class="oldPrice">价格￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+        </view>
+        <view class="time">
+            <text class="residue">月销量{{randomNum}}件</text>
+        </view>
+    </view>
+
+    <!-- 拼团商品商品价格 -->
+    <view class="pt-goods-price" wx:elif="{{goodsState == 2}}">
+        <!-- <view class="pt-goods-price-bgi">
+            <image src="../../../images/detail-img/seckill2x.png"></image>
+        </view> -->
+        <view class="price-box">
+            <view class="goods-price-bgi"> 批发价 </view>
+            <view class="pt-price">
+                <text class="pt-unit">￥</text>
+                <text class="pt-newPrice">{{goodsDetail.goods_info.promotion_price || goodsDetail.goods_info.goods_price}}</text>
+                <text class="pt-oldPrice">￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+            </view>
+        </view>
+        <view class="pt-time">
+            <text class="residue">月销量{{randomNum}}件</text>
+        </view>
+    </view>
+     <!-- 秒杀商品价格 -->
+     <view class="ms-goods-price" wx:elif="{{goodsState == 3}}">
+        <view class="ms-goods-price-bgi">
+            <image src="../../../images/detail-img/xianshi-img.png"></image>
+        </view>
+        <view class="ms-price">
+            <view class="ms-new-price">
+                ￥<text>{{goodsDetail.goods_info.promotion_price || goodsDetail.goods_info.goods_promotion_price}}</text>
+            </view>
+            <view class="ms-xianshi">
+                <text class="ms-hint"> 必拼秒杀</text>
+                <text class="ms-oldPrice">￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+            </view>
+        </view>
+        <view class="ms-time">
+            <text class="ms-residue">{{activeText}}</text>
+            <text class="ms-hours">{{hours}}</text>
+            <text>：</text>
+            <text class="ms-minute">{{minute}}</text>
+            <text>：</text>
+            <text class="ms-second">{{second}}</text>
+        </view>
+    </view>
+
+    <!-- 限时抢购商品价格 -->
+    <view class="xs-goods-price goods-price" wx:elif="{{goodsState == 4}}">
+        <!-- 添加了正常购买的class类名 -->
+        <!-- <view class="xs-goods-price-bgi">
+            <image src="../../../images/detail-img/xianshi-img.png"></image>
+        </view>
+        <view class="xs-price">
+            <view class="xs-new-price">
+                ￥<text>{{goodsDetail.goods_info.goods_promotion_price}}</text>
+            </view>
+            <view class="xs-xianshi">
+                <text class="xs-hint">限时抢购</text>
+                <text class="xs-oldPrice">￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+            </view>
+        </view>
+        <view class="xs-time">
+            <text class="xs-residue">{{activeText}}</text>
+            <text class="xs-hours">{{hours}}</text>
+            <text>：</text>
+            <text class="xs-minute">{{minute}}</text>
+            <text>：</text>
+            <text class="xs-second">{{second}}</text>
+        </view> -->
+
+        <view class="goods-price-bgi"> 批发价 </view>
+        <view class="price">
+            <text class="unit">￥</text>
+            <text class="newPrice">{{goodsDetail.goods_info.promotion_price || goodsDetail.goods_info.goods_price}}</text>
+            <text class="oldPrice">价格￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+        </view>
+        <view class="time">
+            <text class="residue">月销量{{randomNum}}件</text>
+        </view>
+    </view>
+   
+
+    <!-- 商品名称 -->
+    <view class="goods-name">
+        <view class="goods-name-title">
+            {{goodsDetail.goods_info.goods_name}}
+        </view>
+        <!-- <view class="progress-bar">
+            <progress percent="{{progress}}" show-info activeColor="#FF0000" backgroundColor="#FFDBE8" border-radius="20" stroke-width='16' active />
+            <text>已抢80%,仅剩20%</text> 
+        </view> -->
+    </view>
+
+
+    <!-- 参与拼团 -->
+    <view class="participation" wx:if="{{goodsState == 2}}">
+        <view class="now-pt">
+            <text class="under-way">{{assembleList.join_number}}人在拼团,可直接参与</text>
+            <text class="more" bindtap="handlerShow">查看更多</text>
+        </view>
+        <view class="go-pt" wx:if="{{assembleList.list.length != 0}}">
+            <view class="pt-info" wx:for="{{assembleList.list}}" wx:key='index' wx:if="{{index < 2}}">
+                <image src='{{item.buyer_avatar}}'></image>
+                <view class="details">
+                    <view class="user-name">{{item.buyer_name}}</view>
+                    <!-- 判断剩余件数和人数 goods_assemble_mode == 0为件数.==1时为人数-->
+                    <!-- <view class="end-time" wx:if="{{item.goods_assemble_mode == 0}}">还差{{item.goods_assemble_surplus_number}}件,距结束{{m1.foramtTime(item.surplus_time)}}</view> -->
+                    <view class="end-time" >还差{{item.goods_assemble_surplus_number}}{{item.goods_assemble_mode == 0?'件': '人'}},距结束{{m1.foramtTime(item.surplus_time)}}</view>
+                </view>
+                <!-- <view class="go-btn" data-orderId="{{item.order_id}}"  wx:if="{{goods_assemble_surplus_number == 0}}">已拼成</view> -->
+                <view class="go-btn" data-orderId="{{item.order_id}}" bindtap="getAssembleDetail">去批发</view>
+            </view>
+        </view>
+
+        <view class="pt-hint" wx:else>暂无人批发，可发起批发</view>
+    </view>
+    <!-- 商品评价 -->
+    <!-- <view class="goods-evaluate">
+        <view class="evaluate-title">
+            <view class="evaluate-num">商品评价({{goodsDetail.goods_evaluate.length}})</view>
+            <navigator url='./commentList/commentList?goods_id={{goodsDetail.goods_info.goods_id}}' class="see-all">查看全部</navigator>
+        </view>
+        <view>
+            <view wx:if="{{goodsDetail.goods_evaluate.length != 0}}">
+                <view class="evaluate-details" wx:for="{{goodsDetail.goods_evaluate}}" wx:key="{{index}}">
+                    <view class="user-head">
+                        <image src="{{item.member_avatar}}"></image>
+                        <text>{{item.geval_frommembername}}</text>
+                    </view>
+                    <view class="evaluate">{{item.geval_content}}</view>
+                    <view class="evaluate-time">2018-5-5</view>
+                </view>
+            </view>
+            <view wx:else class="empty">暂无商品评论</view>
+        </view>
+    </view> -->
+
+
+    <!-- 图片间隔 -->
+    <view class="interval">
+        <text class="first">——</text>
+        <text class="iconfont icon-tupian"></text>
+        <text> 详情</text>
+        <text class="last">——</text>
+    </view>
+
+    <!--  图片详细 -->
+    <view class="img-details">
+        <text class="img-details-title">商品详情</text>
+        <view wx:if="{{goodsDetail.goods_info.body.length != 0}}" class="images">
+            <image mode="widthFix" wx:for="{{goodsDetail.goods_info.body}}" wx:key="{{index}}" src="{{item.value}}" alt="" />
+        </view>
+        <view wx:else class="empty">抱歉哦，暂无详情图</view>
+    </view>
+
+    <!-- 购买底部 -->
+    <view class="footer">
+        <view class="user-select">
+            <view class="collect" bindtap="handlerCollect">
+                <image mode="widthFix" src="{{collect}}"></image>
+                <text>收藏</text>
+            </view>
+
+            <!-- 正常购买选择 -->
+            <view class="buy-select" wx:if="{{goodsState == 1}}">
+                <view class="add-shopping-cart" bindtap="handlerAddCart">
+                    <text class="begin">加入购物车</text>
+                </view>
+                <view class="chipped" bindtap="handlerBuy">
+                    <text class="begin">立即购买</text>
+                </view>
+            </view>
+            <!-- 拼团选择 -->
+            <view class="pt-select" wx:elif="{{goodsState == 2}}">
+                <view class="alone-buy" bindtap="handlerAloneBuy">
+                    <!-- <text class="price">￥{{goodsDetail.goods_info.promotion_price || goodsDetail.goods_info.goods_price}}</text> -->
+                    <text class="price">￥{{ goodsDetail.goods_info.goods_price}}</text>
+                    <text class="buy">单独购买</text>
+                </view>
+                <view class="organization-pt" bindtap="handlerPt">
+                    <text class="price">￥{{goodsDetail.goods_info.goods_assemble_price}}</text>
+                    <text class="begin">发起批发</text>
+                </view>
+            </view>
+            <!-- 限时抢购底部 -->
+            <view class="xianshi-select" wx:elif="{{goodsState == 3}}">
+                <view class="add-shopping-cart" bindtap="handlerAddCart">
+                    <text class="begin">加入购物车</text>
+                </view>
+                <view class="chipped" bindtap="handlerLoot">
+                    <text class="begin">{{activeState}}</text>
+                </view>
+            </view>
+
+            <!-- 秒杀底部 -->
+            <view class="xianshi-select" wx:elif="{{goodsState == 4}}">
+                <!-- <view class="time">
+                    <text class="residue">{{activeText}}</text>
+                    <text class="hours">{{hours}}</text>
+                    <text>：</text>
+                    <text class="minute">{{minute}}</text>
+                    <text>：</text>
+                    <text class="second">{{second}}</text>
+                </view>
+                <view class="chipped" bindtap="handlerSeckill">
+                    <text class="begin">{{activeState}}</text>
+                </view> -->
+                <view class="add-shopping-cart" bindtap="handlerAddCart">
+                        <text class="begin">加入购物车</text>
+                    </view>
+                    <view class="chipped" bindtap="handlerBuy">
+                        <text class="begin">立即购买</text>
+                    </view>
+            </view>
+        </view>
+        <navigator class="cart-hint" open-type="switchTab" url="../cart/cart">
+            <view class="icon">
+                <image src='../../../images/detail-img/cart-2@2x.png'></image>
+                <text>{{goodsTotal}}</text>
+            </view>
+            <view class="count-down" hidden="{{goodsTotal == 0}}">{{clock.minutes}} : {{clock.seconds}}</view>
+        </navigator>
+    </view>
+
+    <!-- 遮罩层 -->
+    <view class="mask" hidden="{{maskFlag}}" bindtap="handlerGoodsSelectHide" catchtouchmove="stopPageScroll"></view>
+
+    <view class="pt-mask" hidden="{{PTMaskFlag}}" catchtouchmove="stopPageScroll"></view>
+
+    <!--  商品选择框 -->
+    <view class="goods-select" catchtouchmove="stopPageScroll" style="display: {{ goodsSelect? 'flex' :  'none' }}">
+
+
+        <icon class="close" type="clear" size="24" color="rgb(127,127,127)" bindtap="handlerGoodsSelectHide"></icon>
+        <view class="goods">
+            <view class="goods-image">
+                <image mode="aspectFit" src='{{goodsDetail.goods_image[0]}}'></image>
+            </view>
+            <view class="parameter">
+                <text class="price">￥{{selectGoodsPrice || goodsDetail.goods_info.promotion_price }}</text>
+                <text class="selected">已选择：{{getSelectedValue}}</text>
+            </view>
+        </view>
+        <view class="goods-classify">
+            <view wx:for="{{goodsClassify}}" wx:key="index" data-index="{{index}}">
+                <view class="color-title">{{item.names}}</view>
+                <view class="classify">
+                    <text class=" {{subItem.b == isGoodsSelect? 'select-color' : 'colors'}}" wx:for="{{item.values}}"
+                        wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" data-index="{{subIndex}}"
+                        data-value="{{subItem.a}}" data-status="{{subItem.b}}" bindtap="handlerGoodsSelect">{{subItem.a}}</text>
+                </view>
+            </view>
+        </view>
+        <!-- <view class="size">
+          <view class="size-title">尺码</view>
+          <view class="yardage">
+              <text class="{{index == goodsSizeIndex? 'select-color' : 'sizes'}}" wx:for="{{goodsSize}}" wx:key="{{index}}" data-index="{{index}}" bindtap="handlerGoodsSize">{{item}}</text>
+          </view>
+      </view> -->
+        <view class="buy-num">
+            <text class="buy-title">购买数量</text>
+            <view class="quantity-position">
+                <text class="subtract" bindtap="handlerGoodsSubtract">-</text>
+                <text class="number">{{buyNumber}}</text>
+                <text class="add" bindtap="handlerGoodsAdd">+</text>
+            </view>
+        </view>
+        <view class="buy" bindtap="goodsAddCart">{{ptOrBuy}}</view>
+    </view>
+
+
+    <!-- 查看正在拼团 -->
+
+    <view class="begin-pt" hidden="{{nowPt}}">
+        <view class="title">正在批发</view>
+        <icon class="close" type="clear" size="24" color="rgb(178,178,178)" bindtap="handlerClose"></icon>
+       <view wx:if="{{assembleList.list.length != 0}}">
+        <view class="pt-info" wx:for="{{assembleList.list}}" wx:key="index" >
+            <image src='{{item.buyer_avatar}}'></image>
+            <view class="details">
+                <view class="user-name">{{item.buyer_name}}</view>
+                <view class="end-time">还差{{item.goods_assemble_surplus_number}}{{item.goods_assemble_mode == 0?'件': '人'}},距结束{{item.create_time}}</view>
+            </view>
+            <!-- <view class="go-btn" data-orderId="{{item.order_id}}" wx:if="{{item.goods_assemble_surplus_number == 0}}">已拼成</view> -->
+            <view class="go-btn" bindtap="handlerAssemble" data-orderId="{{item.order_id}}">去批发</view>
+        </view>
+       </view>
+        <view class="begin-pt-hint" wx:else>暂无人批发，可发起批发</view>
+    </view>
+
+
+    <!-- 去拼团 -->
+    <view class="many-shopping" hidden="{{goToPt}}">
+        <view class="title">参与用户昵称的拼团</view>
+        <icon class="close" type="clear" size="24" color="rgb(178,178,178)" bindtap="goToClose"></icon>
+        <view class="pt-info">仅剩<text>{{assembleDetail.goods_assemble_surplus_number}}个</text>名额，<text>{{clock2.hours}}:{{clock2.minutes}}:{{clock2.seconds}}</text>后结束</view>
+        <text class="itself">拼主</text>
+        <view class="user-head">
+            
+        </view>
+        <view class="user-head">
+                <image class="{{assembleDetail.buyer_list.length > 1 ? 'image2': 'image1'}}" src="{{assembleDetail.buyer_avatar}}"></image>
+            <image class="{{assembleDetail.buyer_list.length > 1 ? 'image2': 'image1'}}" 
+                wx:for="{{assembleDetail.buyer_list}}"
+                wx:key="index" 
+                src='{{item.buyer_avatar}}'></image>
+        </view>
+        <view class="go-to" data-orderId="assembleDetail.order_id" data-goodsId="assembleDetail.goods_id" bindtap="handlerAssemble">去批发</view>
+    </view>
+</view>
+
+<wxs module="m1"> 
+    var foramtTime = function(time){
+        var seconds = 0;
+        var minutes = 0;
+        var hours = 0;
+
+            if (time) {
+                seconds = time;
+                if (seconds > 59) {
+                    minutes = Math.floor(seconds / 60);
+                    seconds = seconds % 60;
+                    if (minutes > 59) {
+                        hours = Math.floor(minutes / 60);
+                        minutes = minutes % 60;
+                    }
+                }
+            }
+            return hours +'时'+ minutes + '分';
+    }
+    module.exports = {
+        foramtTime:foramtTime
+    }
+        
+    
+</wxs>

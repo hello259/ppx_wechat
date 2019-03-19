@@ -1,0 +1,8 @@
+<view class="the-announcement" id="supernatant" catchtap="clickTap" data-id='{{goodsId}}'>
+   <view class="head-img">
+      <image src="../../../images/icon_mine_nor.png"></image>
+      <image src="{{imgUrl}}" class="default-img" ></image>
+  </view>
+  <view class="announcement-container">{{userInfo}}</view>
+</view>
+<slot></slot>  

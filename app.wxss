@@ -1,0 +1,146 @@
+@import "./lib/styles/font.wxss";
+@import "./lib/styles2/iconfont.wxss";
+/*button边框  */
+button::after{
+  border: 0
+}
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.after-arrow-right {
+  position: relative;
+}
+
+page {
+  background: #fff;
+  height:100%;
+}
+
+.app-wrap {
+  background: #fff;
+  margin-bottom: 10rpx;
+  padding: 20rpx 0;
+}
+
+.null-img {
+  width: 300rpx;
+  height: 300rpx;
+  display: block;
+  margin: 250rpx auto 0;
+
+}
+  
+.after-arrow-right:after {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #c8c8c8;
+  border-style: solid;
+  transform: matrix(.71,.71,-.71,.71,0,0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: -16rpx;
+}
+.btn {
+  display: inline-block;
+  padding: 10rpx 30rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid #ddd;
+  color: #666;
+  font-size: 28rpx;
+}
+.btn .iconfont {
+  margin-right: 8rpx;
+}
+
+.btn.btn-primary {
+  background: #FF7C0D;
+  color: #fff;
+  border-color: #FF7C0D;
+}
+
+button[type=primary] {
+  background-color: #ff7c0d;
+}
+button[type=primary]:active {
+  background-color: #ff7c0d;
+}
+
+button[type=primary]:hover {
+  background-color: #ff7c0d;
+}
+button[type=primary][plain] {
+  color: #ff7c0d;
+  border: 1px solid #ff7c0d;
+  background: transparent;
+}
+button[type=primary][plain]:active {
+  color: #ff7c0d;
+  border: 1px solid #ff7c0d;
+}
+button[type=primary][plain]:hover {
+  color: #ff7c0d;
+  border: 1px solid #ff7c0d;
+}
+.weui-tab {
+  /* margin-top: 90rpx; */
+}
+.weui-check{
+  position: absolute;
+    left: -9999em;
+}
+.weui-navbar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom:1px solid #F0F0F0;
+}
+
+.weui-navbar__item {
+  position: relative;
+  display: block;
+  flex: 1;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 0;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+  color:#FF1434;
+}
+
+.weui-navbar__slider {
+  position: absolute;
+  content: " ";
+  left: 0;
+  bottom: 0;
+  width: 4em;
+  height: 3px;
+  background-color: #ff7c0d;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.weui-navbar__title {
+  display: inline-block;
+  font-size: 26rpx;
+  max-width: 8em;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.red{
+  color: red;
+}

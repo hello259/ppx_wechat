@@ -1,0 +1,42 @@
+<view class='search'>
+   <view class='input'>
+      <view class='search_input'>
+         <image bindtap='handleSearch' style="width: 20rpx; height: 20rpx;" mode="aspectFill" src="../../../../images/index/glass.png" />
+         <input type="text" value="{{inputValue}}" bindinput="searchValueInput" confirm-type="search" bindconfirm="searchClear"
+            placeholder="{{placeholder}}" bindfocus="onFocus" bindblur="onBlur"/>
+      </view>
+      <view bindtap="searchClear" class='cancel'>搜索</view>
+   </view>
+   <!-- <view class="hot_search">
+      <view class="hot_title">
+      大家都在搜索
+      </view>
+      <view class="hot_item">
+        <text wx:for="{{hotList}}" wx:key="{{index}}" bindtap="jupHot" data-id='{{item.id}}'>{{item.name}}</text>
+      </view>
+   </view> -->
+   <view class="history_search" wx:if="{{recommendList.length > 0}}">
+      <view class="history_title">
+         <text>搜索发现</text>
+      </view>
+      <view class="history_item">
+         <block wx:for="{{recommendList}}" wx:key="{{index}}">
+            <text bindtap="historySearch" data-keywork="{{item.name}}">{{item.name}}</text>
+         </block>
+      </view>
+   </view>
+   <view class="history_search">
+      <view class="history_title">
+         <text>历史搜索</text>
+         <view class='clear' bindtap="handleClear">
+            <image style="width: 22rpx; height: 22rpx;" mode="aspectFill" src="../../../../images/index/clear.png" />
+            清空历史记录
+         </view>
+      </view>
+      <view class="history_item">
+         <block wx:for="{{searchData}}" wx:key="{{index}}">
+            <text bindtap="historySearch" data-keywork="{{item}}">{{item}}</text>
+         </block>
+      </view>
+   </view>
+</view>

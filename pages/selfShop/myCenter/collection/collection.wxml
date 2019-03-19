@@ -1,0 +1,71 @@
+<view class='header1'>
+    <view class='header'>
+        <view class='header_con flex_between all-pro-num'>
+            <view class='left'>
+                共<text class="red-text" decode="true">&nbsp;{{proList.length}}&nbsp;</text>件商品
+            </view>
+            <view class='right flex_end red-text'>
+                <view wx:if="{{!management_good}}" class='flex_center' bindtap='management'>
+                    编辑
+                </view>
+                <view wx:if="{{management_good}}" class='flex_center' bindtap='finish_management'>
+                    完成
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='onlinechoose'>
+    <view class='hotel_list flex_center' wx:for="{{proList}}" wx:key="items" wx:for-item="i" data-id="{{index}}" bindtap='select' data-favId="{{i.fav_id}}">
+        <view class='list_cons list_cons-item'>
+            <view wx:if="{{management_good}}" class='lefts'>
+                <block wx-if="{{!i.checked}}">
+                    <view class='icon_none'></view>
+                </block>
+                <block wx-if="{{i.checked}}">
+                    <icon type="success" size="17" color="red" />
+                </block>
+            </view>
+            <image src='{{i.goods_image_url}}'></image>
+            <view class='right'>
+                <view class='name coll-pro-title'>
+                    {{i.goods_name}}
+                </view>
+                <view class='list1 flex_between'>
+                    <view class='left'>
+                        <view class='condition2'>
+                            <view class="condition2-price">￥{{i.goods_price}}</view>
+                            <view class="condition2-text">批发价</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='bottom flex_between choose-btn-text' wx:if="{{management_good}}">
+    <view class='left flex_start'>
+        <block wx:if="{{select_all}}">
+            <view bindtap='select_none' class='flex_start'>
+                <icon type="success" size="17" color="red" />
+                <view class="choose-btn-text-style">
+                    取消全选
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{!select_all}}">
+            <view bindtap='select_all' class='flex_start'>
+                <view class='select_none'>
+                </view>
+                <view class="choose-btn-text-style">
+                    全选
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class='right flex_end'>
+        <view bindtap='deleteitem' class='sure'>
+            删除
+        </view>
+    </view>
+</view>

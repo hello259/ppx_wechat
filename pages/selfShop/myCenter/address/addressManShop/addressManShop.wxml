@@ -1,0 +1,34 @@
+<view class="addressMan">
+    <view class="address-list">
+        <radio-group class="radio-group" bindchange="checkboxChange">
+            <label class="weui-cell weui-check__label radio" wx:for="{{addressList}}" wx:key="value">
+                <!-- <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" /> -->
+                
+                <view class="address-list-item">
+                    <view>
+                        <view class="address-list-item-msg" bindtap="addressToShop" data-areaid="{{item.area_id}}" data-cityid="{{item.city_id}}" data-name="{{item.true_name}}" data-addressId="{{item.address_id}}" data-phone="{{item.mob_phone}}" data-phone="{{item.mob_phone}}" data-areaInfo="{{item.area_info}}" data-address="{{item.address}}">
+                            <view class="address-list-item-msg-head">
+                                <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                    <radio color="#FF2C55" value="{{item.name}}" checked="{{item.is_default == 1}}" />
+                                </view>
+                                <!-- <image style="width:56rpx;height:30rpx" src="../../../../../images/myCenter/adrs_word_moren.png" /> -->
+                            </view>
+                            <view>
+                                <view class="address-nameAndPhone">
+                                    <view class="address-name">{{item.true_name}}</view>
+                                    <view>{{item.mob_phone}}</view>
+                                </view>
+                                <view>{{item.area_info}}{{item.address}}</view>
+                            </view>
+                        </view>
+                        <view class="address-btn">
+                            <view data-id="{{item.address_id}}" class="address-edit-btn" bindtap="toEdit">编辑</view>
+                            <view data-id="{{item.address_id}}" class="address-del-btn" bindtap="delAddress">删除</view>
+                        </view>
+                    </view>
+                </view>
+            </label>
+        </radio-group>
+    </view>
+    <view class="add-address" bindtap="toadd">+ 添加收货地址</view>
+</view>

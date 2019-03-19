@@ -1,0 +1,213 @@
+@import "../../lib/styles/font.wxss";
+page{
+  height: 100%;
+}
+.login{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding-top: 108rpx;
+  box-sizing: border-box;
+}
+.logo-box{
+  text-align: center;
+}
+
+/* .checkboxBtn{
+  position: absolute;
+                visibility: hidden;
+}\
+.checkbox+label {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #fd8845;
+ }
+.checkbox:checked+label:after {
+                content: "";
+                position: absolute;
+                left: 2px;
+                bottom: 12px;
+                width: 9px;
+                height: 4px;
+                border: 2px solid #fd8845;
+                border-top-color: transparent;
+                border-right-color: transparent;
+                -ms-transform: rotate(-60deg);
+                -moz-transform: rotate(-60deg);
+                -webkit-transform: rotate(-60deg);
+                transform: rotate(-45deg);
+            } */
+.smallphone{
+  width: 34rpx;
+  height: 40rpx;
+  display: block;
+  margin-left:12rpx;
+
+}
+.logo-box image{
+  width: 193rpx;
+  height: 193rpx;
+  display: block;
+  margin:0 auto 30rpx;
+}
+.logo-box text,.wechat{
+  font-size: 40rpx;
+  color: #333333;
+}
+.wechat{
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color:#B7B7B7;
+}
+.login-wrapper{
+  width: 586rpx;
+  height: auto;
+  margin: 70rpx auto 0;
+}
+.login-wrapper input{
+  width: 100%;
+  height: 100%;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+/* .login-wrapper input.active */
+.login-wrapper .user-input.active,
+.login-wrapper .atten-input.active{
+  border: 1rpx solid transparent;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.075), 0 0 15px rgba(255,160,32,.3)
+}
+
+.login-wrapper .user-input,
+.login-wrapper .atten-input{
+  border: 1rpx solid #C7C7C7;
+  padding: 0 25rpx;
+  border-radius: 50rpx;
+  width: 100%;
+  height: 90rpx;
+  position: relative;
+  box-sizing: border-box;
+}
+.login-wrapper .user-input input{
+  padding-left: 133rpx;
+  width:460rpx
+}
+.login-wrapper .user-input .sel-area{
+  position: absolute;
+  left: 32rpx;
+  top: 0;
+  font-size: 28rpx;
+  height: 100%;
+  line-height: 90rpx;
+  width: 90rpx;
+}
+.login-wrapper .user-input .sel-area text{
+  width: 70rpx;
+  text-align: center;
+  float: left;
+}
+.login-wrapper .user-input .sel-area icon{
+  width:0rpx;
+  height:0rpx;
+  border-left:10rpx solid transparent;
+  border-right:10rpx solid transparent;
+  border-top:10rpx solid #2f2f2f;
+  font-size:0rpx;
+  line-height:0rpx;
+  float: right;
+  margin-top: 40rpx;
+}
+.login-wrapper .user-input .right-icon{
+  position: absolute;
+  right: 30rpx;
+  top: 0;
+  color: #aaa;
+  z-index: 200;
+  font-size: 38rpx;
+  line-height: 90rpx;
+}
+.login-wrapper .atten-input{
+  margin-top: 35rpx;
+  position: relative;
+}
+.login-wrapper .atten-input .left-icon{
+  position: absolute;
+  left: 50rpx;
+  top: 0;
+  color: #B9C5D5;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+}
+.login-wrapper .atten-input .left-icon text{
+  font-size: 30rpx;
+}
+.login-wrapper .atten-input input{
+  padding-left: 133rpx;
+  width: 390rpx;
+}
+.login-wrapper .atten-input .getCode{
+  min-width: 131rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  font-size: 26rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 18rpx;
+  color: #F03131;
+  background-color: #D9E0EA;
+  border-radius: 50rpx;
+  z-index: 1000;
+}
+.login-wrapper .atten-input .getCode{
+  min-width: 131rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  font-size: 26rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 18rpx;
+  color: #F03131;
+  background-color: #D9E0EA;
+  border-radius: 50rpx;
+  z-index: 1000;
+}
+
+.login-wrapper .atten-input .getCode.active{
+   background-color:#fff;
+}
+.login-wrapper checkbox-group{
+  text-align: center;
+  margin: 30rpx 0;
+  font-size:28rpx;
+}
+.login-wrapper checkbox-group checkbox{
+  transform:scale(.7);
+  border-radius: 50%;
+}
+.login-wrapper checkbox-group text{
+  color: #F03131;
+}
+.login-wrapper .login-btn{
+  width: 100%;
+  height: 96rpx;
+  margin-top: 72rpx;
+  background-color: #F03131;
+  color: #fff;
+  border-radius: 50rpx;
+  line-height:96rpx;
+}
+button[disabled][type=primary]{
+ background: #C7C7C7
+}
+#agree{
+  color: #C7C7C7;
+}
+.not-register{
+  display: block;
+  color:#F03131;
+  text-align: center;
+  margin: 30rpx 0 ;
+  font-size: 26rpx;
+}

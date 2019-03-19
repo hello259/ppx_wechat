@@ -1,0 +1,163 @@
+<!-- <button bindtap="setBiaoTi1">标题1</button> -->
+<view class="shopping-cart">
+    <!-- 购物车列表 -->
+    <view class="cart-goods" wx:if="{{cartList.length != 0}}">
+        <!-- <view>{{clock.seconds}}</view> -->
+        <!-- 店铺分类 -->
+        <view class="goods-classify">
+            <!-- 同店铺商品分类 -->
+            <view 
+            class="goods-classify-detail" 
+            wx:for="{{cartList}}" 
+            wx:key="index"> 
+                <!-- 全选按钮和店铺 -->
+                <view class="classify-detail-title">
+                    <view class="title-left">
+                        <!-- 左侧的按钮 -->
+                        <view 
+                        class="iconfont {{item.storeSelectAll ? ' icon-checked' : 'ckeckAll'}}" 
+                        bindtap="handlerStoraSelect"
+                        data-storeIndex="{{index}}"
+                        >
+                        </view>
+                        <!-- 店铺图标 -->
+                        <view class="iconfont icon-dianpu"></view>
+                        <!-- 店铺名 -->
+                        <view>{{item.store_name}}</view>
+                    </view>
+                    <!-- 右边删除图标 -->
+                    <!-- <view class="iconfont icon-shanchu" bindtap="removeGoods"></view> -->
+                </view>
+
+
+                <!-- 商品图片，名称，颜色和数量选择 -->
+                <view 
+                class="classify-detail-content" 
+                wx:for="{{item.data}}" 
+                wx:for-item="firstItem" 
+                wx:for-index="firstIndex"
+                wx:key="firstIndex">
+                    <!-- 左侧按钮 -->
+                    <view 
+                    class="iconfont {{firstItem.selected ? ' icon-checked' : 'radio-select'}}" bindtap="handlerGoodsSelect"
+                    data-storeIndex="{{index}}"
+                    data-index="{{firstIndex}}"
+                    bindtap="handlerGoodsSelect"
+                    ></view>
+
+                    <!-- 右侧内容 -->
+                    <view class="detail-content-right">
+                        <!-- 图片 -->
+                        <view class="content-img">
+                            <image src="{{firstItem.goods_image_url}}"></image>
+                        </view>
+                        <!-- 商品说明 -->
+                        <view class="content-explain">
+                            <view class="content-explain-name">{{firstItem.goods_name}}</view>
+                            <!-- <view class="content-explain-name">问请问请问请问请问问请问请问</view> -->
+                            <!-- 颜色选择 -->
+                            <view class="colorOrNumber">
+                               <view class="content-explain-color" >
+                                    <view 
+                                    wx:for="{{firstItem.goods_spec}}"
+                                    wx:for-item="secondItem"
+                                    wx:for-index="secondIndex"
+                                    wx:key="secondIndex">
+                                        {{secondItem}}
+                                    </view>
+                               </view>
+                                <view class="select-num">
+                                    <text 
+                                    class="subtract" 
+                                    data-index="{{firstIndex}}" 
+                                    data-storeIndex="{{index}}"
+                                    data-cartId="{{firstItem.cart_id}}"
+                                    bindtap="minusGoodsNum"
+                                    >-</text>
+                                    <text class="number">{{firstItem.goods_num}}</text>
+                                    <text 
+                                    class="plus"
+                                    data-index="{{firstIndex}}"
+                                    data-storeIndex="{{index}}"
+                                    data-cartId="{{firstItem.cart_id}}"
+                                    bindtap="addGoodsNum"
+                                        >+</text>
+                                </view>
+                                <!-- <text></text> -->
+                            </view>
+                            <view class="content-explain-price">
+                                <text class="price">￥ {{firstItem.goods_price}}</text>
+                               <view 
+                               class="iconfont icon-shanchu" 
+                               bindtap="deleteGoods"
+                               data-storeIndex="{{index}}"
+                                data-cartId="{{firstItem.cart_id}}"
+                               ></view> 
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 空空如也 -->
+    <view class="blank" wx:else>
+        <view class="blank-img">
+            <image src="../../../images/detail-img/order_img@2x.png"></image>
+        </view>
+        <view class="blank-hint">购物车空空如也</view>
+        <view class="blank-indicate">
+            <text class="loot" bindtap="toRushPage">逛逛抢购</text>
+            <text class="collect" bindtap="toCollectList">看看收藏</text>
+        </view>
+    </view>
+
+    <!-- 看了又看 -->
+    <view class="lookAndSee">
+        <view class="LAS-title">
+            <text>——</text>
+            <text>看了又看</text>  
+            <text>——</text>
+        </view>
+        <view class="res-list">
+            <block wx:for="{{recommend}}" wx:key="index">
+                <view class="res-list-item" data-id="{{item.goods_id}}" bindtap='toDetail'>
+                    <image style="width: 100%; height: 339rpx;" mode="" src="{{item.goods_image}}"></image>
+                    <view class="res-list-item-msg">
+                        <view class="res-list-item-msg-title">{{item.goods_name}}</view>
+                        <view class="res-list-item-msg-label">{{item.goods_jingle}}</view>
+                        <view>
+                            <text decode="true" class="res-list-item-msg-price">￥{{item.goods_price}}&nbsp;&nbsp;</text>
+                            <text class="res-list-item-msg-price-title">批发价</text>
+                        </view>
+                        <view class="res-list-item-msg-bottom">
+                            <view class="res-list-item-msg-marketPrice">￥{{item.goods_marketprice}}</view>
+                            <view class="">{{item.applause_rate}}%好评</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+
+
+    <!-- 去结算 -->
+    <view class="clearing">
+        <view class="selectAll">
+            <text 
+            class=" iconfont {{selectAllStatus ? ' icon-checked' : 'all'}}"
+            bindtap="selectAll"
+            ></text>
+            <text>全选</text>
+
+        </view>
+        <view class="total">
+            <view class="totle-price">合计： ￥{{totalPrice}}</view>
+            <view class="freight">不含运费</view>
+        </view>
+        <view class="settle-accounts" bindtap="settleAccounts">
+            去结算（{{goodsTotal}}）
+        </view>
+    </view>
+</view>

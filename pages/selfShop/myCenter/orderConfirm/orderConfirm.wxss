@@ -1,0 +1,175 @@
+page{
+    background: #F2F2F2;
+}
+.orderHead{
+    background: #fff;
+    padding:26rpx 75rpx 28rpx 27rpx;
+    color:#333333;
+    font-size: 26rpx;
+    margin-bottom:20rpx;
+}
+.orderHead .order-and-phone{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:31rpx;
+}
+.order-pro{
+    padding:20rpx 25rpx 36rpx 28rpx;
+    font-size: 24rpx;
+    background: #fff;
+    color:#666;
+    margin-bottom:20rpx;
+}
+.order-pro-list{
+    display: flex;
+    margin-top:40rpx;
+    margin-bottom:39rpx;
+}
+.order-pro-list .order-pro-list-img{
+    border:1px solid #EAEAEA;
+    border-radius: 10rpx;
+    margin-right:21rpx;
+}
+.order-pro-list .order-pro-list-msg{
+    flex: 1;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+.order-pro-list .order-pro-list-msg .order-pro-list-msg-title{
+    text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color:#333333;
+}
+.order-pro-list .order-pro-list-msg .order-pro-list-msg-price{
+    display: flex;
+    color:#333;
+}
+.order-pro-list .order-pro-list-msg .order-pro-list-msg-price .pro-num{
+    color:#868686;
+    font-size: 22rpx;
+}
+.order-pro-list .order-pro-list-msg .order-pro-list-msg-spec{
+    color:#868686;
+    font-size: 22rpx;
+}
+.order-pro-all-price{
+    font-size: 24rpx;
+    font-size: #333333;
+    display: flex;
+    flex-direction:row-reverse
+}
+.order-pro-all-price .all-price{
+    color:#FF0000;
+}
+.order-foot{
+    background: #fff;
+    padding:32rpx 53rpx 30rpx 29rpx;
+    color:#111111;
+    font-size: 24rpx;
+    margin-bottom:120rpx;
+}
+.order-foot>view{
+    white-space:nowrap; 
+overflow:hidden; 
+text-overflow:ellipsis; 
+}
+.order-foot .order-sn{
+    margin:19rpx 0;
+}
+.foot-btn{
+    display: flex;
+    justify-content: flex-end;
+    padding:18rpx 26rpx;
+    background: #fff;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    box-sizing: border-box;
+  }
+  .foot-btn .order-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:55rpx;
+    width:144rpx;
+    font-size:24rpx;
+    border:1px solid #FF0000;
+    border-radius: 5rpx;
+    margin-left:15rpx;
+  }
+  .foot-btn .order-btn-red{
+    color:#fff;
+    background: #FF0A32;
+  }
+  .foot-btn .order-btn-white{
+    color:#FF0A32;
+    background: #fff;
+  }
+  /* 确认收货弹窗 */
+.wx-popup {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    right:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+  }
+  .popup-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+   /* height:800rpx; */
+    /* width: 80%; */
+    /* max-width: 600rpx; */
+    border-radius: 10rpx;
+    box-sizing: bordre-box;
+    transform: translate(-50%, -50%); 
+    overflow: hidden;
+    background: #fff;
+    padding:56rpx 37rpx 44rpx;
+  }
+  .wx-popup .goods-list{
+    display: flex;
+    justify-content: space-between;
+    margin-top:41rpx;
+  }
+  .wx-popup .goods-list>view{
+    width:256rpx;
+    height:88rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32rpx;
+    border-radius: 3rpx;
+  }
+  .wx-popup .goods-list .goods-cancel-btn{
+    border:1px solid #FF2C55;
+    color:#FF2C55;
+  }
+  .wx-popup .goods-list .goods-sure-btn{
+    background: #FF2C55;
+    color:#fff;
+    border:1px solid  #FF2C55;
+    margin-left:25rpx;
+  }
+  .wx-popup .goods-title1{
+    color:#333333;
+    font-size: 30rpx;
+    text-align: center;
+    margin:22rpx 0 49rpx;
+  }
+  .wx-popup .goods-title2{
+    color:#999999;
+    font-size: 28rpx;
+    text-align: center;
+  }

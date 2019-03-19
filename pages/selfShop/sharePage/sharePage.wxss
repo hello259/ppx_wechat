@@ -1,0 +1,515 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url(data:application/font-woff2;charset=utf-8;base64,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) format('woff2'), url(data:application/font-woff;charset=utf-8;base64,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) format('woff'), url('iconfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* ====================================================================== */
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xinlang:before {
+    content: "\e60f";
+}
+
+.icon-fenxiangweixin:before {
+    content: "\e669";
+}
+
+.icon-fenxiangweixinpengyouquan:before {
+    content: "\e66a";
+}
+
+.icon-fenxiangqqhaoyou:before {
+    content: "\e66b";
+}
+
+.icon-huabanfuben:before {
+    content: "\e652";
+}
+
+
+/* ====================================================================== */
+
+page {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.share {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* 剩余时间 */
+
+.share .time-remaining {
+    width: 100%;
+    /* height: 52%; */
+    background-color: #fff;
+    text-align: center;
+    padding: 0 50rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+/* 支付成功 */
+
+.share .time-remaining .pay-success {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-remaining .pay-success icon {
+    margin-right: 20rpx;
+}
+
+
+/* 倒计时 */
+
+.time-remaining .time {
+    margin: 40rpx 0 60rpx;
+}
+
+.time-remaining .time text {
+    font-size: 40rpx;
+    display: inline-block;
+    color: #333333;
+}
+
+.time-remaining .time .residue {
+    margin-right: 20rpx;
+}
+
+.time-remaining .time .hours,
+.time-remaining .time .minute,
+.time-remaining .time .second {
+    width: 60rpx;
+    height: 60rpx;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10rpx;
+    line-height: 60rpx;
+}
+
+
+/* 通知 */
+
+.share .time-remaining .inform {
+    font-size: 40rpx;
+    font-weight: bold;
+    /* padding: 0 50rpx; */
+    /* box-sizing: border-box; */
+}
+
+.time-remaining .inform text {
+    color: red;
+}
+
+
+/* 按钮 */
+
+.share .time-remaining button {
+    width: 88%;
+    height: 100rpx;
+    background: linear-gradient(to left, #ff2f54, #ff0e19, #ff4f8e);
+    color: #FFF;
+    font-size: 34rpx;
+    font-weight: bold;
+    border-radius: 100rpx;
+    line-height: 100rpx;
+    margin-top: 30rpx;
+}
+
+.share .time-remaining .go-home {
+    background: #fff;
+    border: 1px solid #ff0e19;
+    color: #ff0e19;
+    margin-bottom: 60rpx;
+}
+
+
+/* 空白 */
+
+.share #blank {
+    width: 100%;
+    height: 20rpx;
+    background-color: #F7F7F7;
+}
+
+
+/*  字体图标实验 */
+
+
+/* .share #blank .iconfont {
+    width: 30rpx;
+    height: 30px;
+    background-color: orange;
+    color: #fff;
+} */
+
+
+/* 提示 */
+
+.share .hint {
+    width: 100%;
+    margin-top: 20rpx;
+    padding: 25rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+    position: relative;
+}
+
+
+/* 头像 */
+
+.share .hint .user-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 25rpx 0;
+    box-sizing: border-box;
+}
+
+.hint .user-head image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    margin: 40rpx 20rpx;
+}
+
+
+/* 拼主 */
+
+.share .hint .itself {
+    display: block;
+    width: 60rpx;
+    height: 30rpx;
+    background: linear-gradient(to left, #FF3179, #FF0000);
+    color: #fff;
+    text-align: center;
+    line-height: 30rpx;
+    font-size: 20rpx;
+    border-radius: 30rpx;
+    position: absolute;
+    top: 78rpx;
+    left: 318rpx;
+}
+
+
+/* 订单详情-拼团规则 */
+
+.hint .details-rule .common {
+    height: 110rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #EAEBEA;
+}
+
+.hint .details-rule .common::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15rpx;
+    width: 15rpx;
+    top: 50%;
+    right: 0rpx;
+    margin-top: -8rpx;
+    border-top: 1px solid #b6b6b6;
+    border-right: 1px solid #b6b6b6;
+    transform: rotate(45deg);
+}
+
+.details-rule .common .first {
+    font-size: 32rpx;
+    color: #333333;
+}
+
+.details-rule .common .last {
+    font-size: 30rpx;
+    color: #999999;
+    margin-right: 40rpx;
+}
+
+
+/* 分享好友弹窗 */
+
+
+/* .share .friends-share {
+    width: 81%;
+    height: 44%;
+    background-color: #fff;
+    border-radius: 30rpx;
+    position: absolute;
+    top: 26%;
+    left: 10.5%;
+    text-align: center;
+    padding: 20rpx;
+    box-sizing: border-box;
+    z-index: 3;
+} */
+
+
+/* 关闭 */
+
+
+/* .friends-share .close {
+    position: absolute;
+    top: 0rpx;
+    right: 25rpx;
+    font-size: 50rpx;
+    color: #B2B2B2;
+} */
+
+
+/* 标题 */
+
+
+/* .share .friends-share .share-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin: 48rpx 0 44rpx;
+}
+
+.friends-share .share-title text {
+    color: red;
+} */
+
+
+/* 字体 */
+
+
+/* .friends-share .share-icon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.friends-share .share-icon view {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+} */
+
+
+/* 
+.friends-share .share-icon .iconfont {
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 50%;
+    font-size: 62rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 90rpx;
+}
+
+.friends-share .share-icon text {
+    font-size: 32rpx;
+    color: #333333;
+}
+
+.friends-share .share-icon .weixin {
+    width: 35%;
+    margin-left: 60rpx;
+    margin-bottom: 40rpx;
+}
+
+.friends-share .share-icon .pengyouquan {
+    width: 35%;
+    align-items: flex-start;
+    margin-bottom: 40rpx;
+}
+
+.share-icon .pengyouquan .iconfont {
+    background-color: #5BB63A;
+}
+
+.share-icon .weixin .iconfont {
+    background-color: #5BB63A;
+}
+
+.share-icon .weixin text {
+    margin-right: 20rpx;
+}
+
+.share-icon .QQ .iconfont {
+    background-color: #6A99E5;
+}
+
+.share-icon .tuandui .iconfont {
+    background-color: #F3B743;
+}
+
+.share-icon .xinlang .iconfont {
+    background-color: #F08024;
+} */
+
+
+/* 遮罩层 */
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 2;
+}
+
+.rule-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 2;
+}
+
+
+/* 拼团规则 */
+
+.share .pt-rule {
+    width: 86%;
+    height: 34%;
+    position: absolute;
+    top: 30%;
+    left: 7%;
+    background-color: #fff;
+    z-index: 3;
+    padding: 20rpx;
+    box-sizing: border-box;
+    border-radius: 15rpx;
+}
+
+
+/* 关闭 */
+
+.share .pt-rule .rule-close {
+    position: absolute;
+    top: 0rpx;
+    right: 25rpx;
+    font-size: 50rpx;
+    color: #B2B2B2;
+}
+
+
+/* 标题 */
+
+.share .pt-rule .rule-title {
+    width: 100%;
+    margin: 30rpx 0 40rpx;
+    font-size: 38rpx;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+}
+
+.pt-rule .rule-title .title-left::after {
+    content: "";
+    display: inline-block;
+    width: 15rpx;
+    height: 15rpx;
+    background-color: #000;
+    transform: rotate(45deg);
+    margin: 0 25rpx 6rpx 0;
+}
+
+.pt-rule .rule-title .title-right::before {
+    content: "";
+    display: inline-block;
+    width: 15rpx;
+    height: 15rpx;
+    background-color: #000;
+    transform: rotate(45deg);
+    margin: 0 0 6rpx 25rpx;
+}
+
+
+/* 规则 */
+
+.pt-rule .rule-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 34rpx;
+}
+
+.pt-rule .rule-content text {
+    margin-bottom: 30rpx;
+    color: #333333;
+}
+
+
+/* 分享成功 */
+
+.share .share-success {
+    position: fixed;
+    top: 30%;
+    left: 5%;
+    width: 90%;
+    height: 40%;
+    background-color: #fff;
+    z-index: 3;
+    text-align: center;
+    /* border: 1px solid #000; */
+    border-radius: 20rpx;
+}
+
+.share-success .share-success-title {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* .share .share-success .share-success-close {
+    position: absolute;
+    top: 0rpx;
+    right: 25rpx;
+    font-size: 50rpx;
+    color: #B2B2B2;
+} */
+
+.share .share-success icon {
+    margin-top: 35rpx;
+}
+
+.share .share-success .share-success-content {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin: 70rpx 0 50rpx;
+}
+
+.share .share-success .continue-share {
+    width: 90%;
+    height: 100rpx;
+    margin: 0 auto;
+    border-radius: 100rpx;
+    font-size: 32rpx;
+    line-height: 100rpx;
+    color: #fff;
+    background: linear-gradient(to left, #FF0000, #FF3179);
+}

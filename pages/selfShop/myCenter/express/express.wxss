@@ -1,0 +1,80 @@
+.express-head{
+    display: flex;
+    font-size: 22rpx;
+    align-items: flex-end;
+    padding:21rpx 27rpx 23rpx;
+}
+.express-head>image{
+    margin-right:32rpx;
+}
+.express-head .express-com{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    flex: 1;
+    color:#868686;
+}
+.express-head .express-com text{
+color:#333333;
+}
+.express-head .express-copy{
+    width:91rpx;
+    height:34rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid #D4D4D4;
+    border-radius: 17rpx;
+    color:#333333;
+}
+.nbsp{
+    width:100%;
+    height:20rpx;
+    background: #F4F4F4;
+}
+.express-list{
+    color:#000;
+    font-size:26rpx;
+    padding:27rpx;
+    padding-right:100rpx;
+}
+.express-list .express-list-item{
+    display: flex;
+    margin-left:10rpx;
+    margin-top:10rpx;
+    height:175rpx;
+}
+.express-list .express-list-title{
+    margin-bottom:20rpx;
+}
+.express-list .express-list-item .express-list-item-left{
+    margin-right:40rpx;
+}
+.express-list .express-list-item .express-list-item-left .circle.active{
+    background:#ff0000;
+}
+.express-list .express-list-item .express-list-item-left .circle{
+    width:5px;
+    height:5px;
+    border-radius: 50%;
+    background: #aeaeae;
+    position: relative;
+    top:10rpx;
+}
+.express-list .express-list-item .express-list-item-left .line{
+    height:150rpx;
+    border-left:1px solid #aeaeae;
+    /* background: #aeaeae; */
+    position: relative;
+    top:20rpx;
+    left:4rpx;
+}
+
+.express-list .express-list-item .express-list-item-right .time{
+    font-size: 24rpx;
+    color:#666;
+    margin-top:10rpx;
+}
+.express-list .express-list-item .express-list-item-right .active{
+    color:#ff0000;
+}

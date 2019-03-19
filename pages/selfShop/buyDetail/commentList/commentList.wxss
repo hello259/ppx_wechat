@@ -1,0 +1,88 @@
+/* pages/selfShop/buyDetail/commentList/commentList.wxss */
+.comment-list {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 全部评价 */
+.comment-list .comment-title {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+
+/* 所有评论 */
+.comment-list .comment-all {
+  width: 100%;
+  border-top: 1px solid #e8e8e8;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+/* 用户头像和名字 */
+.comment-all .comment-detail .comment-detail-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20rpx 0;
+}
+
+.comment-all .comment-detail .comment-detail-title image {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+
+.comment-all .comment-detail .comment-detail-title .userName {
+  color: #666666;
+  font-size: 30rpx;
+}
+
+
+/* 评价时间和规格 */
+.comment-list .comment-all .comment-detail-time {
+  width: 100%;
+  color: #969696;
+  font-size: 28rpx;
+}
+
+/* 评价内容和图片 */ 
+.comment-list .comment-all .comment-detail-content {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.comment-list .comment-all .comment-detail-content .content {
+  font-size: 30rpx;
+  color: #ccc;
+  margin-bottom: 20rpx;
+}
+
+.comment-list .comment-all .comment-detail-content .comment-detail-img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.comment-all .comment-detail-content .comment-detail-img image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 10rpx;
+}
+
+/* 评论为空 */
+.comment-list .blank {
+  width: 100%;
+  height: 200rpx;
+  line-height: 200rpx;
+  text-align: center;
+  font-size: 36rpx;
+}

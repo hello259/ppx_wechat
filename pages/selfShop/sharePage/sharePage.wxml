@@ -1,0 +1,106 @@
+<view class="share">
+
+    <view wx:if="{{order_status == 0}}">
+        <!-- 剩余时间 -->
+        <view class="time-remaining">
+            <!-- 支付成功 -->
+            <view class="pay-success">
+                <icon size="26" type="success" color="red"></icon>
+                <text>支付成功</text>
+            </view>
+            <!-- 倒计时 -->
+            <view class="time">
+                <text class="residue">剩余</text>
+                <text class="hours">{{clock.hours || '00'}}</text>
+                <text>：</text>
+                <text class="minute">{{clock.minutes || '00'}}</text>
+                <text>：</text>
+                <text class="second">{{clock.seconds || '00'}}</text>
+            </view>
+
+            <!-- 通知 -->
+            <view class="inform">还差<text>{{surplus_number}}{{mode == 0 ? '件' : '人'}}</text>成团，赶快邀请好友来拼团吧</view>
+
+            <button open-type='share'>邀请好友拼团</button>
+            <button class="go-home" bindtap="handlerHome">回到首页</button>
+        </view>
+
+        <!-- 空白 -->
+        <view id="blank">
+            <!-- <view class="iconfont icon-xinlang"></view> -->
+        </view>
+
+        <!-- 提示 -->
+        <view class="hint">
+            <!-- 头像 -->
+            <view class="user-head">
+                <image src="{{buyer_avatar}}"></image>
+                <image src="../../../images/detail-img/user@2x.png"></image>
+            </view>
+            <text class="itself">拼主</text>
+            <!-- 订单详情-拼团规则 -->
+            <view class="details-rule">
+                <!-- <view class="common">
+                <text class="first">订单详情</text>
+                <text class="last">哇噢噢噢噢哦哦哦哦哦哦</text>
+            </view> -->
+                <view class="common">
+                    <text class="first">拼团规则</text>
+                    <text class="last" bindtap="handlerOpenRule">好友拼团 满人发货</text>
+                </view>
+            </view>
+        </view>
+        <!-- <button open-type='share'>分享</button> -->
+        <!-- 遮罩层 -->
+        <view class="mask" hidden="{{maskFlag}}" bindtap="handlerCloseuccess"></view>
+
+        <view class="rule-mask" hidden="{{ruleMaskFlag}}"></view>
+
+        <!-- 拼团规则 -->
+        <view class="pt-rule" style="display:  {{ isRuleClose? 'none' : 'block' }}">
+            <view class="rule-close" bindtap="handlerCloseRule"> x </view>
+            <view class="rule-title">
+                <text class="title-left">——</text>
+                <text class="title-content">拼团规则</text>
+                <text class="title-right">——</text>
+            </view>
+            <view class="rule-content">
+                <text>1.邀请好友参与拼团</text>
+                <text>2.人满拼团成功,商家发货</text>
+                <text>3.剩余时间内人不满,拼团不成功,给予退款</text>
+            </view>
+        </view>
+
+        <!-- 分享成功 -->
+        <view class="share-success" hidden="{{isShareSuccessClose}}">
+            <!-- <view class="share-success-close" bindtap="handlerCloseSuccess">x</view> -->
+            <icon type="success" size="26" color="red"></icon>
+            <view class="share-success-title">分享成功</view>
+            <view class="share-success-content">分享越多，成功几率越大哦</view>
+            <button open-type="share" class="continue-share">继续分享</button>
+        </view>
+    </view>
+
+
+    <!-- 拼团成功 -->
+    <view wx:if="{{order_status == 1}}">
+        <view class="time-remaining">
+            <view class="pay-success">
+                <icon size="26" type="success" color="red"></icon>
+                <text>拼团成功</text>
+            </view>
+        </view>
+        <view class="hint">
+            <!-- 头像 -->
+            <view class="user-head">
+                <image src="{{buyer_avatar}}"></image>
+                <image src="{{own_avatar}}"></image>
+            </view>
+            <text class="itself">拼主</text>
+        </view>
+        <view class="time-remaining">
+            <button class="go-home" bindtap="handlerHome">去首页逛逛</button>
+        </view>
+    </view>
+
+</view>

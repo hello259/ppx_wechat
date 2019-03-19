@@ -1,0 +1,291 @@
+<view class="order-page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+                        bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                    <!-- <view class="no-order">
+                                                        <image style="width:178rpx;height:132rpx;" src="../../../../images/myCenter/order_img_empty.png"></image>
+                                                        <view>暂时没有订单噢~</view>
+                                                    </view> -->
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{allOrder}}" wx:for-index="orderIndex">
+                            <view class="order-state-name">
+                                <view>商家：{{item.order_list[0].store_name}}</view>
+                                <view class="order-state">{{item.order_list[0].state_desc}}</view>
+                            </view>
+                            <view class="order-msg-block" data-orderid="{{item.order_list[0].order_id}}" bindtap="toOrderDetail">
+                                <view class="order-msg" wx:for="{{item.order_list[0].extend_order_goods}}" wx:for-item="itemList">
+                                    <view class="order-img">
+                                        <image style="width:167rpx;height:167rpx;" src="{{itemList.goods_image_url}}"></image>
+                                    </view>
+                                    <view class="order-msg-text">
+                                        <view class="order-msg-text-title">
+                                            {{itemList.goods_name}}
+                                        </view>
+                                        <view class="order-msg-text-type" wx:if="{{itemList.goods_spec}}" wx:for="{{itemList.goods_spec}}"
+                                            wx:for-index="key">
+                                            <view>商品规格：{{itemList.goods_spec[key]}}</view>
+                                            <!-- <view>颜色分类: {{itemList.goods_spec}}</view>
+                                                                                <view>尺码：{{itemList.goods_spec}}</view> -->
+                                        </view>
+                                        <view class="order-msg-text-price">
+                                            <view>￥{{itemList.goods_price}}</view><text decode="true">&nbsp;&nbsp;x{{itemList.goods_num}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="order-msg-money">
+                                    <view class="order-msg-money-text">实付：</view>
+                                    <view class="order-msg-money-price">￥{{item.order_list[0].goods_amount}}</view>
+                                    <!-- <view class="order-msg-money-price">￥{{m1.getMax(item.order_list[0].goods_amount-3)}}</view> -->
+                                </view>
+                            </view>
+                            <!-- <view class="order-all-btn" wx:if="{{item.order_list[1].noBtn}}"> -->
+                            <view class="order-all-btn">
+                                <view class="order-btn order-btn-white" wx:if="{{item.order_list[1].makeGoods}}"
+                                    bindtap="takeGoods" data-orderId="{{item.order_list[0].order_id}}" data-img="{{item.order_list[0].extend_order_goods[0].goods_image_url}}">确认收货</view>
+                                <!-- <view class="order-btn order-btn-white">申请售后</view> -->
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].payBtn}}"
+                                    data-orderid="{{item.order_list[0].order_id}}" bindtap="toPayPage" data-orderkey="{{item.order_list[0].pay_sn}}" data-orderitem="{{orderIndex}}">立即支付</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].checkExpressBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toExpress">查看物流</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].evaluate}}" bindtap="toComment"
+                                    data-orderId="{{item.order_list[0].order_id}}">去评价</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                    <!-- <view class="no-order">
+                                                        <image style="width:178rpx;height:132rpx;" src="../../../../images/myCenter/order_img_empty.png"></image>
+                                                        <view>暂时没有订单噢~</view>
+                                                    </view> -->
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{allOrder}}" wx:for-index="orderIndex">
+                            <view class="order-state-name">
+                                <view>商家：{{item.order_list[0].store_name}}</view>
+                                <view class="order-state">{{item.order_list[0].state_desc}}</view>
+                            </view>
+                            <view class="order-msg-block" data-orderid="{{item.order_list[0].order_id}}" bindtap="toOrderDetail">
+                                <view class="order-msg" wx:for="{{item.order_list[0].extend_order_goods}}" wx:for-item="itemList">
+                                    <view class="order-img">
+                                        <image style="width:167rpx;height:167rpx;" src="{{itemList.goods_image_url}}"></image>
+                                    </view>
+                                    <view class="order-msg-text">
+                                        <view class="order-msg-text-title">
+                                            {{itemList.goods_name}}
+                                        </view>
+                                        <view class="order-msg-text-type" wx:if="{{itemList.goods_spec}}" wx:for="{{itemList.goods_spec}}"
+                                            wx:for-index="key">
+                                            <view>商品规格：{{itemList.goods_spec[key]}}</view>
+                                            <!-- <view>颜色分类: {{itemList.goods_spec}}</view>
+                                                                                <view>尺码：{{itemList.goods_spec}}</view> -->
+                                        </view>
+                                        <view class="order-msg-text-price">
+                                            <view>￥{{itemList.goods_price}}</view><text decode="true">&nbsp;&nbsp;x{{itemList.goods_num}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="order-msg-money">
+                                    <view class="order-msg-money-text">实付：</view>
+                                    <view class="order-msg-money-price">￥{{item.order_list[0].goods_amount}}</view>
+                                </view>
+                            </view>
+                            <!-- <view class="order-all-btn" wx:if="{{item.order_list[1].noBtn}}"> -->
+                            <view class="order-all-btn">
+                                <view class="order-btn order-btn-white" wx:if="{{item.order_list[1].makeGoods}}"
+                                    bindtap="takeGoods" data-orderId="{{item.order_list[0].order_id}}" data-img="{{item.order_list[0].extend_order_goods[0].goods_image_url}}">确认收货</view>
+                                <!-- <view class="order-btn order-btn-white">申请售后</view> -->
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].payBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toPayPage" data-orderkey="{{item.order_list[0].pay_sn}}">立即支付</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].checkExpressBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toExpress">查看物流</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].evaluate}}" bindtap="toComment"
+                                    data-orderId="{{item.order_list[0].order_id}}">去评价</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                    <!-- <view class="no-order">
+                                                        <image style="width:178rpx;height:132rpx;" src="../../../../images/myCenter/order_img_empty.png"></image>
+                                                        <view>暂时没有订单噢~</view>
+                                                    </view> -->
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{allOrder}}" wx:for-index="orderIndex">
+                            <view class="order-state-name">
+                                <view>商家：{{item.order_list[0].store_name}}</view>
+                                <view class="order-state">{{item.order_list[0].state_desc}}</view>
+                            </view>
+                            <view class="order-msg-block" data-orderid="{{item.order_list[0].order_id}}" bindtap="toOrderDetail">
+                                <view class="order-msg" wx:for="{{item.order_list[0].extend_order_goods}}" wx:for-item="itemList">
+                                    <view class="order-img">
+                                        <image style="width:167rpx;height:167rpx;" src="{{itemList.goods_image_url}}"></image>
+                                    </view>
+                                    <view class="order-msg-text">
+                                        <view class="order-msg-text-title">
+                                            {{itemList.goods_name}}
+                                        </view>
+                                        <view class="order-msg-text-type" wx:if="{{itemList.goods_spec}}" wx:for="{{itemList.goods_spec}}"
+                                            wx:for-index="key">
+                                            <view>商品规格：{{itemList.goods_spec[key]}}</view>
+                                            <!-- <view>颜色分类: {{itemList.goods_spec}}</view>
+                                                                                <view>尺码：{{itemList.goods_spec}}</view> -->
+                                        </view>
+                                        <view class="order-msg-text-price">
+                                            <view>￥{{itemList.goods_price}}</view><text decode="true">&nbsp;&nbsp;x{{itemList.goods_num}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="order-msg-money">
+                                    <view class="order-msg-money-text">实付：</view>
+                                    <view class="order-msg-money-price">￥{{item.order_list[0].goods_amount}}</view>
+                                </view>
+                            </view>
+                            <!-- <view class="order-all-btn" wx:if="{{item.order_list[1].noBtn}}"> -->
+                            <view class="order-all-btn">
+                                <view class="order-btn order-btn-white" wx:if="{{item.order_list[1].makeGoods}}"
+                                    bindtap="takeGoods" data-orderId="{{item.order_list[0].order_id}}" data-img="{{item.order_list[0].extend_order_goods[0].goods_image_url}}">确认收货</view>
+                                <!-- <view class="order-btn order-btn-white">申请售后</view> -->
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].payBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toPayPage" data-orderkey="{{item.order_list[0].pay_sn}}">立即支付</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].checkExpressBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toExpress">查看物流</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].evaluate}}" bindtap="toComment"
+                                    data-orderId="{{item.order_list[0].order_id}}">去评价</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
+                    <!-- <view class="no-order">
+                                                        <image style="width:178rpx;height:132rpx;" src="../../../../images/myCenter/order_img_empty.png"></image>
+                                                        <view>暂时没有订单噢~</view>
+                                                    </view> -->
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{allOrder}}" wx:for-index="orderIndex">
+                            <view class="order-state-name">
+                                <view>商家：{{item.order_list[0].store_name}}</view>
+                                <view class="order-state">{{item.order_list[0].state_desc}}</view>
+                            </view>
+                            <view class="order-msg-block" data-orderid="{{item.order_list[0].order_id}}" bindtap="toOrderDetail">
+                                <view class="order-msg" wx:for="{{item.order_list[0].extend_order_goods}}" wx:for-item="itemList">
+                                    <view class="order-img">
+                                        <image style="width:167rpx;height:167rpx;" src="{{itemList.goods_image_url}}"></image>
+                                    </view>
+                                    <view class="order-msg-text">
+                                        <view class="order-msg-text-title">
+                                            {{itemList.goods_name}}
+                                        </view>
+                                        <view class="order-msg-text-type" wx:if="{{itemList.goods_spec}}" wx:for="{{itemList.goods_spec}}"
+                                            wx:for-index="key">
+                                            <view>商品规格：{{itemList.goods_spec[key]}}</view>
+                                            <!-- <view>颜色分类: {{itemList.goods_spec}}</view>
+                                                                                <view>尺码：{{itemList.goods_spec}}</view> -->
+                                        </view>
+                                        <view class="order-msg-text-price">
+                                            <view>￥{{itemList.goods_price}}</view><text decode="true">&nbsp;&nbsp;x{{itemList.goods_num}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="order-msg-money">
+                                    <view class="order-msg-money-text">实付：</view>
+                                    <view class="order-msg-money-price">￥{{item.order_list[0].goods_amount}}</view>
+                                </view>
+                            </view>
+                            <!-- <view class="order-all-btn" wx:if="{{item.order_list[1].noBtn}}"> -->
+                            <view class="order-all-btn">
+                                <view class="order-btn order-btn-white" wx:if="{{item.order_list[1].makeGoods}}"
+                                    bindtap="takeGoods" data-orderId="{{item.order_list[0].order_id}}" data-img="{{item.order_list[0].extend_order_goods[0].goods_image_url}}">确认收货</view>
+                                <!-- <view class="order-btn order-btn-white">申请售后</view> -->
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].payBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toPayPage" data-orderkey="{{item.order_list[0].pay_sn}}">立即支付</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].checkExpressBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toExpress">查看物流</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].evaluate}}" bindtap="toComment"
+                                    data-orderId="{{item.order_list[0].order_id}}">去评价</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
+                    <!-- <view class="no-order">
+                                                        <image style="width:178rpx;height:132rpx;" src="../../../../images/myCenter/order_img_empty.png"></image>
+                                                        <view>暂时没有订单噢~</view>
+                                                    </view> -->
+                    <view class="order-list">
+                        <view class="order-list-item" wx:for="{{allOrder}}" wx:for-index="orderIndex">
+                            <view class="order-state-name">
+                                <view>商家：{{item.order_list[0].store_name}}</view>
+                                <view class="order-state">{{item.order_list[0].state_desc}}</view>
+                            </view>
+                            <view class="order-msg-block" data-orderid="{{item.order_list[0].order_id}}" bindtap="toOrderDetail">
+                                <view class="order-msg" wx:for="{{item.order_list[0].extend_order_goods}}" wx:for-item="itemList">
+                                    <view class="order-img">
+                                        <image style="width:167rpx;height:167rpx;" src="{{itemList.goods_image_url}}"></image>
+                                    </view>
+                                    <view class="order-msg-text">
+                                        <view class="order-msg-text-title">
+                                            {{itemList.goods_name}}
+                                        </view>
+                                        <view class="order-msg-text-type" wx:if="{{itemList.goods_spec}}" wx:for="{{itemList.goods_spec}}"
+                                            wx:for-index="key">
+                                            <view>商品规格：{{itemList.goods_spec[key]}}</view>
+                                            <!-- <view>颜色分类: {{itemList.goods_spec}}</view>
+                                                                                <view>尺码：{{itemList.goods_spec}}</view> -->
+                                        </view>
+                                        <view class="order-msg-text-price">
+                                            <view>￥{{itemList.goods_price}}</view><text decode="true">&nbsp;&nbsp;x{{itemList.goods_num}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="order-msg-money">
+                                    <view class="order-msg-money-text">实付：</view>
+                                    <view class="order-msg-money-price">￥{{item.order_list[0].goods_amount}}</view>
+                                </view>
+                            </view>
+                            <!-- <view class="order-all-btn" wx:if="{{item.order_list[1].noBtn}}"> -->
+                            <view class="order-all-btn">
+                                <view class="order-btn order-btn-white" wx:if="{{item.order_list[1].makeGoods}}"
+                                    bindtap="takeGoods" data-orderId="{{item.order_list[0].order_id}}" data-img="{{item.order_list[0].extend_order_goods[0].goods_image_url}}">确认收货</view>
+                                <!-- <view class="order-btn order-btn-white">申请售后</view> -->
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].payBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toPayPage" data-orderkey="{{item.order_list[0].pay_sn}}">立即支付</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].checkExpressBtn}}"
+                                    data-orderId="{{item.order_list[0].order_id}}" bindtap="toExpress">查看物流</view>
+                                <view class="order-btn order-btn-red" wx:if="{{item.order_list[1].evaluate}}" bindtap="toComment"
+                                    data-orderId="{{item.order_list[0].order_id}}">去评价</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 确认收货弹窗 -->
+    <view  wx:if="{{isshow}}" class="wx-popup" catchtouchmove='true'>
+        <view class='popup-container' >
+            <image style="width:188rpx;height:188rpx;display:block;margin:0 auto;" src="{{img}}"/>
+            <view class="goods-title1">确认收到货了吗？</view>
+            <view class="goods-title2">请收到货确认无误后，再确认收货噢！</view>
+            <view class="goods-list">
+                <view bindtap="goodsCancelBtn" class="goods-cancel-btn">取消</view>
+                <view bindtap="goodsSureBtn" class="goods-sure-btn">确认收货</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <wxs module="m1">
+    var getMax = function(array) { 
+        return Math.ceil(array * 100).toFixed(2) / 100
+    } 
+    module.exports.getMax = getMax;
+  </wxs> -->

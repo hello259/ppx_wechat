@@ -1,0 +1,126 @@
+<!--pages/selfShop/cart/orderAssemble/orderAssemble.wxml-->
+<!--pages/selfShop/cart/orderConfirm/orderConfirm.wxml-->
+<view class="order-confirm">
+  <!-- 收货地址 -->
+  <view style="width:100%">
+      <view 
+      class="shippping-address" 
+      wx:if="{{addressList.length != 0}}" 
+      bindtap="selectAddress">
+          <!-- 联系人 -->
+          <view class="linkman">
+              <view class="consignee">收货人：{{addressList.true_name}}</view>
+              <view class="mobile-phone">{{addressList.mob_phone}}</view>
+          </view>
+
+          <!-- 地址 -->
+          <view class="address">
+              <!-- <text></text> -->
+              收货地址：{{addressList.area_info}}{{addressList.address}}
+          </view>
+      </view>
+
+      <!-- 未添加地址 -->
+      <view class="not-added" wx:else bindtap="selectAddress">
+          <text class="iconfont icon-dizhi"></text>
+          <text>请添加收货地址</text>
+      </view>
+  </view>
+
+  <!-- 分割图 -->
+  <view class="partition-img">
+
+      <image src="../../../../images/detail-img/order_image@2x.png"></image>
+  </view>
+
+
+    <!-- 商品信息 -->
+    <view class="goods-info" >
+          <!-- 店铺分类 -->
+          <view class="store-classify">
+              <!-- 店铺名称呼 -->
+              <view class="store-name" >
+                  商家 : {{goodsList.goods_info.store_name}}
+              </view>
+  
+              <!-- 商品分类 -->
+              <view class="goods-classify" >
+                  <!-- 商品图片 -->
+                  <view class="goods-img">
+                      <image src="{{goodsList.goods_info.goods_image_url}}"></image>
+                  </view>
+                  <!-- 商品说明 -->
+                  <view class="goods-explain">
+                      <view class="goods-title">{{goodsList.goods_info.goods_name}}</view>
+                      <view class="goods-color">
+                  <text 
+                  wx:for="{{goodsList.goods_info.goods_spec}}" 
+                  wx:key="index">{{item}}</text>
+                  </view>
+                      <view class="goods-price">{{goodsList.goods_info.goods_assemble_price}}</view>
+                  </view>
+              </view>
+  
+  
+              <!-- 购物优惠券（红包） -->
+              <!-- <view class="coupons">
+                  <text class="coupons-hint">新人购物红包...</text>
+                  <text class="coupons-content">满5.10减5.00</text>
+              </view> -->
+              <!-- 买家留言 -->
+              <view class="leave-words">
+                  <text>买家留言：</text>
+                  <textarea value="{{leaveWord}}" bindblur="getLeaveWord" placeholder="选填  给买家留言吧" placeholder-style="color:#e4e4e4;" maxlength="50" />
+              </view>
+              <!-- 商品合计 -->
+              <view class="total-price">
+                  <view class="statistics">
+                      共1件商品 小计:
+                      <text class="price">￥{{goodsList.goods_info.goods_total}}</text>
+                  </view>
+                  <view class="carriage">运费：￥{{goodsList.freight_amount}}元</view>
+              </view>
+          </view>
+      </view>
+
+  <!-- 立即支付 -->
+  <view class="pay">
+      <button bindtap="payNow">立即支付</button>
+  </view>
+
+  <!-- 优惠券选择弹出框 -->
+  <view class="coupon-module">
+      <view class="select-coupon">
+          <scroll-view>
+              <!-- 店铺名 -->
+              <view class="store">我是老板店铺</view>
+              <!-- 优惠券分类 -->
+              <view class="coupon-classify">
+                  <!-- 优惠券 -->
+                  <view class="coupon-detail">
+                      <view class="detail">
+                          <view class="price">
+                              <text>30</text>元
+                          </view>
+                          <text class="require">满25元可用</text>
+                          <text class="deadline">有效期 2018.12.21-2018.12.21</text>
+                      </view>
+                      <!-- 选择按钮 -->
+                      <view class="iconfont {{slelectCoupon ? ' icon-checked' : 'select'}}" bindtap="couponSelect"></view>
+                      <!-- <view class="iconfont icon-checked" bindtap="couponSelect"></view> -->
+                  </view>
+                  <!-- 暂不使用 -->
+                  <view class="nonuse">
+                      <text>暂不使用优惠</text>
+                      <text class="iconfont"></text>
+                  </view>
+              </view>
+          </scroll-view>
+      </view>
+      <view class="close">
+          <button>关闭</button>
+      </view>
+  </view>
+
+  
+</view>

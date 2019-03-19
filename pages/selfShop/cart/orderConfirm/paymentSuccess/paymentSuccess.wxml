@@ -1,0 +1,20 @@
+<!--pages/selfShop/cart/orderConfirm/paymentSuccess/paymentSuccess.wxml-->
+
+<view class="payment-success">
+
+  <!-- 剩余时间 -->
+  <view class="time-remaining">
+      <!-- 支付成功 -->
+      <view class="pay-success">
+          <icon size="26" type="success" color="red"></icon>
+          <text>支付成功</text>
+      </view>
+
+      <!-- 通知 -->
+
+      <button  bindtap="orderDetails">订单详情</button>
+      <button class="go-home" bindtap="handlerHome">回到首页</button>
+  </view>
+
+
+</view>

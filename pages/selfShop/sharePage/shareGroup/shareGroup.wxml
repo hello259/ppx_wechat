@@ -1,0 +1,72 @@
+<view class="share-group">
+    <!-- 商品信息 -->
+    <view class="goods-detail">
+        <!-- 商品图片 -->
+        <view class="goods-img">
+            <image src="{{img}}"></image>
+        </view>
+        <!-- 商品说明 -->
+        <view class="goods-explain">
+            <view class="goods-title">{{title}}</view>
+            <view class="goods-price">
+                <text>{{people}}人成员</text>
+                <view class="price">
+                    <text>￥{{ptprice}}</text>
+                    <!-- <text> 拼单省48.2元</text> -->
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 提示时间 -->
+    <view class="group-hint">
+
+        <text>仅剩{{nowpeople}}个名额</text>
+        <view class="count-down">
+            <text>{{clock.hours || '00'}}</text>:
+            <text>{{clock.minutes || '00'}}</text>:
+            <text>{{clock.seconds || '00'}}</text>
+        </view>
+        <text>结束</text>
+    </view>
+
+    <!-- 拼团方法 -->
+    <view class="group-way">
+        <!-- 头像 -->
+        <view class="user-head">
+            <image src="{{buyer_avatar}}"></image>
+            <image src="../../../../images/detail-img/user@2x.png"></image>
+        </view>
+
+        <!-- 一键成团 -->
+        <button wx:if="{{nowpeople > 0}}" class="submit-group" bindtap="toPay">一键成团</button>
+
+        <text class="itself">拼主</text>
+        <!-- 拼团规则 -->
+        <view class="details-rule">
+            <view class="common">
+                <text class="first">拼团规则</text>
+                <text class="last" bindtap="handlerOpenRule">好友拼团 满人发货</text>
+            </view>
+        </view>
+    </view>
+
+
+    <!-- 拼团规则 -->
+    <view class="pt-rule" style="display:  {{ isRuleClose? 'none' : 'block' }}">
+        <view class="rule-close" bindtap="handlerCloseRule"> x </view>
+        <view class="rule-title">
+            <text class="title-left">——</text>
+            <text class="title-content">拼团规则</text>
+            <text class="title-right">——</text>
+        </view>
+        <view class="rule-content">
+            <text>1.邀请好友参与拼团</text>
+            <text>2.人满拼团成功,商家发货</text>
+            <text>3.剩余时间内人不满,拼团不成功,给予退款</text>
+        </view>
+    </view>
+
+    <!-- 遮罩层 -->
+    <view class="mask" hidden="{{maskFlag}}"></view>
+</view>

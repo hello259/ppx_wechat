@@ -1,0 +1,171 @@
+/* pages/selfShop/index/flashSales/flashSales.wxss */
+page{
+  background: #F2F2F2;
+}
+.flash-sales .flash-sales-nav{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  align-items: center;
+  font-size: 34rpx;
+  padding-bottom: 20rpx;
+}
+.flash-sales .flash-sales-nav .nav-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.flash-nav-content{
+  font-size: 24rpx;
+}
+.selected{
+  color: #FF1436;
+}
+.sales-count-down{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ff183c;
+  color:white;
+  font-size: 28rpx;
+  padding: 20rpx;
+}
+.count-down text:nth-child(2n){
+  background-color:white ;
+  color:#ff183c;
+  padding: 5rpx;
+  border-radius: 3px;
+}
+
+.seconds-goods {
+  display: flex;
+  padding:20rpx 37rpx 20rpx 26rpx;
+  /* border-bottom: 1px solid #DDDDDD; */
+  background-color: white;
+  flex-wrap:wrap;
+  margin-bottom:1rpx;
+}
+
+.seconds-goods .seconds-goods-image {
+  /* padding: 20rpx; */
+  width:188rpx;
+  height:188rpx;
+  margin-right:19rpx;
+}
+
+.seconds-goods .seconds-goods-image image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.seconds-goods .seconds-goods-info {
+  flex: 1;
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+  /* padding: 20rpx; */
+  font-size: 31rpx;
+}
+.seconds-goods-info .goods-info-title{
+  color:#333333;
+font-size:28rpx;
+word-break:break-all;
+text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
+overflow:hidden;
+
+
+}
+.seconds-goods .goods-progress-bar{
+  display: inline-block;
+  width: 186rpx;
+  height: 20rpx;
+  border-radius: 20rpx;
+  background-color: #ffd4d4;
+  margin-left: 20rpx;
+}
+.seconds-goods  .goods-info-price {
+  display: flex;
+
+  margin-top: 10rpx;
+ 
+}
+.seconds-goods .goods-info-residue{
+  /* margin: 10rpx 0; */
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.seconds-goods  .goods-info-residue text:nth-child(1) {
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.goods-info-price .goods-price-left .reduce-price {
+  font-size: 19rpx;
+  color: #f91334;
+}
+.goods-info-price .goods-price-left text:nth-child(2){
+  font-size: 20rpx;
+  color: #999999;
+}
+.goods-info-price .goods-price{
+  display: flex;
+  align-items: center;
+
+}
+.goods-info-price .goods-price text:nth-child(1) {
+  color: #ff3e3e;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.goods-info-price .goods-price text:nth-child(2) {
+  color: #999;
+  font-size: 20rpx;
+  border: 1px solid #DDDDDD;
+  margin-left: 20rpx;
+  padding: 5rpx;
+}
+
+ .rush-purchase {
+  width: 136rpx;
+  height: 47rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  border:none;
+  padding:0;
+  border-radius: 5rpx;
+  margin:0;
+  color: white;
+}
+.rush-purchase-style{
+  background-color: #ff2c55;
+}
+.rush-purchase-style2{
+  background-color: #FCB755;
+}
+.goods-info-price .begin{
+  background-color: #FCB755;
+}
+button::after{
+
+}
+.goods-price-del {
+  text-decoration: line-through;
+}
+.advance-notice{
+  margin-top: 10rpx;
+}
+.goods-info-residue .sell-out{
+  background-color: #FCB755;
+  display: flex;
+  justify-content: space-between;
+}

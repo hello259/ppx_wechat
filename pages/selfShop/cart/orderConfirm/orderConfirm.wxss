@@ -1,0 +1,516 @@
+/* pages/selfShop/cart/orderConfirm/orderConfirm.wxss */
+
+
+/* 字体图标 */
+
+@font-face {
+    font-family: 'iconfont';
+    src: url(data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAREAA0AAAAACPwAAAPuAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GVgCCUhEICoU4hDULDgABNgIkAxQEIAWFCAdPG4MHUZQPTo7sYzGOhfJApZJSY5c+BM8jzt+fm6SlCyLiGyLSgfchovJdCIzbr+2iNMZAI4myENOihJLA28Tl+Bf4g/zOXi2gMaeOteg5+4CiAN/atugtkAC7QJ5TDXkv5rVmEu4H8CxAAPfXZfcAHlV+jHRpAXFAMqAIzSEMUEAKOXCgdnUNmIndXz4KhQeKk0iiG6xVu1DhdT6E0//f1yZ9fCAAQIM1TQyo4xKUNEYB4PEofHA+pPkQ7nb7U/6X8lPKlQhFRkYQ8sgAKE+PwP4D6UYBcAHEAXHBS5AZADAAAEBzmSlOkkSeG8+6k7ObzNlH3nvX5P77pg8/Nn/wYdiDB80ePmx+/37Te/faLwiSdGm2INjkJ206f3/yhckjC6NDWy4v0ilIr61afrxo3IMn0+sOyk8ae6HopippcdHNrSw5Ym1wCCzxm1mJLozdNGY+TRTFk+uRwSaUv8laiW6xcYJNYIMtoqNb0oqX3y4a/+Dd9CHJWliJHWm2YIGNF8xL0mQeq+9Xjbmae/Nloz32xYeZo002nEhVjXfRscBdeSRV8/hNFx1K//PoR06adOahGkyX/pGkIBzOQxBIly7uwPm79ZcvmjXsAnS32WWUyLAbJaKNnmeRAoU3LoUr35rtxtn91zI8Pb2lUKXr2bhdiEMqQX0yy5EiR/R3BRoU+E4fGd2upFb5lC65hhLmlSlxe++RovEmpt6UoWSqYicKb/5cyBt3soa2hTYSukNjHpdwbukSFAo/XsJ4FQhnh1fICPK86hAzphGLvaY+/uKFAt+OPRWhMjHlV+b4y/r2rxzO0qyuU6NGg7RukiRuKcORtkG83HHHVl1V2Nbms4WLuQVF8+coOrGJ9sg58gOAAMH+q9nWPn6ZX73YhmXEYaa3/E+PBjwKgGC+7isA9E/rFJ8p53UCA2OPCgS4BnMBKGBZ8D8AgEReIAAgqTwEgPA0IQCUWHoTAJpnMgFgeNYQAI7YziIAXJ7XCAArd1RCAMSWOBagSYWAXGAxkUAlTImnLaYlMBgwyCzMkcxWzJXATcxq5sv62LJFH6zKBuiqo0EStYsMOhnO7q6zvvoILxjEwl60UG08VC+356aUjfT90EhXEYP10tEAvJpu0uKTc+xmuhpgoO7dGRSUTwEc1M5eMF+BqkD1+X10NWA2xQw0REQhgwwSlkHYAH31lkG1JoJd9VLTfWXQL/2WHrrqbJB8OCdSOnBIpNCgQeHDYNXNv6rtUd1rksPQrf1kP6XkB65wy+F8OvdpZT/FGq6s2szr1yHTYKkGFwgVaqMWk7BLxz7DBtNAT1ck71ZEJNbAbn8hmBjsduluu/oNBgAA) format('woff2'), url(data:application/font-woff;charset=utf-8;base64,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) format('woff'), url('iconfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url(data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAQ8AA0AAAAACPwAAAPnAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GVgCCUhEICoU4hDULDgABNgIkAxQEIAWFCAdPG4MHUZQPTo7sZ4KpsrJHEM5Tg2suYV3G4PxZZxC96Tfj4WHdf+fOzJvH/1euZgKQjLZ5X1swbZWTuhKZiCj4xP18qwaqaG7+kcuy9gHOZzCwnW9euzeHKveFglw1A3w7gHQFqPwf5Jm4HP8Cf5Df2asFNObUsRY9Zx9QFOBb2xa9BRJgF8hzqiHvxbzWTML9AJ6FgIdHNErwZPQ9Srp0oIbWIBFSBSFDgsjEXgWSbckN7MHuH5/0jxKJQkoSPWNlm0XtrcjTyvTyv25+elFHAFKwdowBU1yBkkauLygpSXhbeOr4Nuw/t1/qX7sXqf0IikzkBHkiQeLpCdh/EP+BBOSghgY8I1oByACQymW1Wsvm6ryxkk/WIFU0Eg4eXA4fXY+f3Y+eYo+O3I6P3Q8PXQ8O/IsQL8StCLWk8l0LB4XFwvDitBjPStMgpEBAvHLSjD48rUAE4HU+VYwRrngrC4xwh1E2BiEaAQACphuMtGLKNb8QuOAshEQCagF4aguEWFobpKEWACBqw4i0trTiyl0z5vC+QkgyDxhUuFtREWSgAp5LAag9tMtf12ldNdqp5WOVNJemKelqvCUTyF05Ju3OnFsyovCfdCIiK08eq0F5hRNJQThEjkFAXp4eUdhLvL0RrKEH0F6yh1QiQy9KpDldqkoBk+ZyuPJ29a35wQ3F89k2Y+tNdbBrDEZwlj1QwcZMx4gvQwfDL2Isyc+KwPVxwqoOWJI3pOVu/5gZI0umRdFK2nzKpPXV2Bv31MpnyseVr5WTn1oW7qSWElFvbNY4gnAufo6MkOf54pixo1hcGtVBfW4pFPiSclERakd1v+9XJbXyS9NZ6s4LEyZ0zcqWLZXDDUenGfFyhXLz2LdJpTZfZcBgt2BQ1Jd+DrVH9vUBIBBcuDpuMmEqfS1RmWXEYdn/039EEihJQDBf92WA9B+tU3xZ5rxOZGTOGkGC3CZKkKCigv8AmvsJQCshEhBK5pCARNEGEpAq2SJApuSQAAVVVwTIlbwQoKJHjCIBVS1in1RkZXQHFgtNNbBEowVYqqk9kCEvrKC1D5Zr6otVzPNfX9U5NtIabYND2UlUlg3tzB5jLC3wC3a0VC5aqDYeqpfbc6OUDen7gVk4gr0ZygZeTTdp8ck59jycja1xt01cRAwOamePR2JVgfHzFzib2RSzdSBI2Nnh2fA2luZsOk0EOTM1vWSzSr9lgsPYicA5kdJttJDYRfKHwaqbf1Xbo7rXJIeB1e0nVwqiwMW3HI5g+rRiP8XKV1Zt5vXrkGlUqIYcIQm1MY2s2fLAxWlPA1OXEN6KiKi2q/9CMLFXsmts12oPAA==) format('woff2'), url(data:application/font-woff;charset=utf-8;base64,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) format('woff'), url('iconfont_1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-checked:before {
+    content: "\e605";
+    color: red;
+}
+
+.icon-dianpu:before {
+    content: "\e666";
+}
+
+.icon-shanchu:before {
+    content: "\e61c";
+}
+
+page {
+    width: 100%;
+    height: 100%;
+    background-color: #F2F2F2;
+}
+
+.order-confirm {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* 收货地址 */
+
+.order-confirm .shippping-address,
+.order-confirm .not-added {
+    width: 100%;
+    border-top: 1px solid #DDDDDD;
+    background-color: #fff;
+    padding: 25rpx;
+    box-sizing: border-box;
+    font-size: 30rpx;
+    color: #333;
+    position: relative;
+}
+
+.order-confirm .shippping-address .linkman {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shippping-address .linkman .mobile-phone {
+    margin-right: 60rpx;
+}
+
+.order-confirm .shippping-address .address {
+    position: relative;
+    /* margin-right: 45rpx; */
+    margin: 30rpx 45rpx 10rpx 0;
+}
+
+.order-confirm .shippping-address .address::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15rpx;
+    width: 15rpx;
+    top: 12rpx;
+    right: 0rpx;
+    margin-right: -15rpx;
+    border-top: 1px solid #b6b6b6;
+    border-right: 1px solid #b6b6b6;
+    transform: rotate(45deg);
+}
+
+
+/* 未添加地址 */
+
+.order-confirm .not-added .iconfont {
+    margin-right: 10rpx;
+    color: #bebebe;
+}
+
+.order-confirm .not-added::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15rpx;
+    width: 15rpx;
+    top: 50rpx;
+    right: 0rpx;
+    margin-top: -7rpx;
+    margin-right: 35rpx;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    transform: rotate(45deg);
+}
+
+
+/* 分割图 */
+
+.order-confirm .partition-img {
+    width: 100%;
+    height: 15rpx;
+    /* border: 1px dashed red; */
+    /* margin-top: 0; */
+    display: flex;
+}
+
+.order-confirm .partition-img image {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 商品信息 */
+
+.order-confirm .goods-info {
+    width: 100%;
+    background-color: #fff;
+    font-size: 32rpx;
+    margin-top: 20rpx;
+}
+
+
+/* 商品信息-店铺分类 */
+
+.order-confirm .goods-info .store-classify {
+    width: 100%;
+    margin-bottom: 20rpx;
+}
+
+
+/* 商品信息-店铺名称呼 */
+
+.goods-info .store-classify .store-name {
+    padding: 20rpx;
+    box-sizing: border-box;
+    color: #666666;
+    border-bottom: 1px solid #666666;
+}
+
+
+/* 商品信息-商品分类 */
+
+.goods-info .store-classify .goods-classify {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30rpx 20rpx;
+    box-sizing: border-box;
+}
+
+
+/* 图片 */
+
+.store-classify .goods-classify .goods-img {
+    width: 180rpx;
+    height: 180rpx;
+    border: 1px solid #F7f7f7;
+    line-height: 180rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.store-classify .goods-classify .goods-img image {
+    width: 80%;
+    height: 80%;
+}
+
+
+/* 商品名称 */
+
+.store-classify .goods-classify .goods-explain {
+    margin-left: 20rpx;
+}
+
+.store-classify .goods-classify .goods-explain .goods-title {
+    color: #333;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.store-classify .goods-classify .goods-explain .goods-color {
+    color: #868686;
+    font-size: 30rpx;
+}
+
+.store-classify .goods-classify .goods-explain .goods-price {
+    color: #FF0000;
+    font-size: 34rpx;
+    margin-top: 20rpx;
+}
+
+/* 购买数量 */
+.store-classify .price-changes {
+    width: 100%;
+    height: 102rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+.store-classify .price-changes .change-hint {
+    font-size: 34rpx;
+}
+
+.store-classify .price-changes .add-and-sub {
+    /* width: 100%; */
+    height: 102rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.store-classify .price-changes .add-and-sub .number {
+    width: 80rpx;
+    height: 60rpx;
+    text-align: center;
+    line-height: 60rpx;
+}
+
+.store-classify .price-changes .add-and-sub text {
+    width: 70rpx;
+    height: 60rpx;
+    background-color: #f5f5f5;
+    color: #999999;
+    text-align: center;
+    line-height: 60rpx;
+}
+
+
+
+/* 购物优惠券（红包） */
+
+.goods-info .store-classify .coupons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 60rpx 30rpx 30rpx;
+    /* box-sizing: content-box; */
+    box-sizing: border-box;
+    font-size: 34rpx;
+    position: relative;
+}
+
+.goods-info .store-classify .coupons::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15rpx;
+    width: 15rpx;
+    top: 42rpx;
+    right: 20rpx;
+    /* margin-right: 15rpx; */
+    border-top: 1px solid #b6b6b6;
+    border-right: 1px solid #b6b6b6;
+    transform: rotate(45deg);
+}
+
+.goods-info .store-classify .coupons .coupons-hint {
+    color: #999999;
+}
+
+.goods-info .store-classify .coupons .coupons-content {
+    color: #FF262C;
+}
+
+
+/* 买家留言 */
+
+.goods-info .store-classify .leave-words {
+    width: 100%;
+    display: flex;
+    padding: 20rpx;
+    box-sizing: border-box;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.goods-info .store-classify .leave-words .massage-title {
+    flex-shrink: 0;
+    line-height: 35rpx;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.goods-info .store-classify .leave-words .massage-contents {
+    height: 130rpx;
+    text-indent: 40rpx;
+}
+.goods-info .store-classify .leave-words .massage-contents-hidden {
+    height: 130rpx;
+    text-indent: 40rpx;
+    color: #e4e4e4;
+
+}
+
+
+/* 商品合计 */
+
+.goods-info .store-classify .total-price {
+    padding: 40rpx 30rpx;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.store-classify .total-price .statistics {
+    font-size: 38rpx;
+    margin-bottom: 20rpx;
+}
+
+.store-classify .total-price .statistics .price {
+    color: #FF0000;
+}
+
+.store-classify .total-price .carriage {
+    font-size: 30rpx;
+    color: #868686;
+}
+
+
+/* 立即支付 */
+
+.order-confirm .pay {
+    width: 100%;
+    height: 160rpx;
+    padding: 20rpx;
+    margin-top: 20rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.order-confirm .pay button {
+    height: 100rpx;
+    background-color: #00c700;
+    color: #fff;
+    font-size: 36rpx;
+    line-height: 100rpx;
+}
+
+
+/* 优惠券选择弹出框 */
+
+ .order-confirm .coupon-module {
+    width: 100%;
+    height: 52.1%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    border-radius: 10rpx 10rpx 0 0;
+    /* display: none; */
+}
+
+ .order-confirm .coupon-module .select-coupon {
+    width: 100%;
+    height:100%;
+
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    margin-bottom: 100rpx;
+}
+
+.coupon-module .select-coupon .store {
+    width: 100%;
+    text-align: center;
+    margin: 30rpx 0;
+    font-size: 36rpx;
+    color: #333333;
+}
+
+.coupon-module .select-coupon .coupon-detail {
+    border-top: 1px solid #F0F0F0;
+}
+
+.coupon-module .select-coupon .coupon-classify {
+    overflow-y: auto;
+    height: 62%;
+}
+
+.select-coupon .coupon-classify .coupon-detail {
+    width: 100%;
+    height: 180rpx;
+    padding: 35rpx 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.coupon-classify .coupon-detail .detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #666666;
+    font-size: 28rpx;
+}
+
+.coupon-classify .coupon-detail .detail .price {
+    color: #FF262C;
+    font-size: 28rpx;
+}
+
+.coupon-detail .detail .price text {
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.select-coupon .coupon-classify .select {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    font-size: 40rpx;
+}
+
+.select-coupon .coupon-classify .iconfont {
+    font-size: 42rpx;
+    margin-right: 40rpx;
+} 
+
+
+/* 暂不适用优惠 */
+
+.select-coupon .coupon-classify .nonuse {
+    /* font-size: 36rpx; */
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-top: 50rpx;
+}
+
+.coupon-classify .nonuse text:last-child {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    font-size: 40rpx;
+}
+
+.coupon-classify .nonuse .select {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    font-size: 40rpx;
+}
+
+.coupon-classify .nonuse .iconfont {
+    font-size: 40rpx;
+}
+
+
+/* 关闭按钮 */
+
+.coupon-module .close {
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    border-radius: 0;
+}
+
+.coupon-module .close button {
+    color: #fff;
+    line-height: 100rpx;
+    background-color: #ff2c55;
+} 
+
+/* 遮罩层 */
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .2);
+    z-index:10;
+}

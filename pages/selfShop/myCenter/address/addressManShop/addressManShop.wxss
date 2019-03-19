@@ -1,0 +1,57 @@
+.addressMan{
+  background: #F2F2F2;
+  height:100%;
+}
+.address-list{
+  font-size: 28rpx;
+  color:#333;
+}
+.address-list-item{
+  margin-bottom:20rpx;
+  background: #fff;
+}
+.address-list-item-msg{
+  display: flex;
+  padding:28rpx 26rpx 30rpx;
+  border-bottom:1px solid #ddd;
+}
+.address-list-item-msg .address-nameAndPhone{
+  display: flex;
+  margin-bottom:15rpx;
+}
+.address-list-item-msg .address-nameAndPhone .address-name{
+  margin-right:33rpx;
+}
+.address-list-item-msg-head{
+  width:56rpx;height:30rpx;
+}
+.address-list-item-msg .address-list-item-msg-head{
+  margin-right:20rpx;
+}
+.address-btn{
+  padding:20rpx 26rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.address-btn>view{
+  width:128rpx;
+  height:48rpx;
+  border:1px solid #ddd;
+  border-radius: 3rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left:20rpx;
+}
+.add-address{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FF2C55;
+  color:#fff;
+  font-size:34rpx;
+  width:100%;
+  height:98rpx;
+  position: fixed;
+  bottom:0;
+}

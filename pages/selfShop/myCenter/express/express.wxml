@@ -1,0 +1,24 @@
+<view class="expressMsg">
+    <view class="express-head">
+        <image style="width:64rpx;height:64rpx" src="../../../../images/myCenter/car.png"/>
+        <view class="express-com">
+            <view>物流公司：<text>{{expressList.express_name}}</text></view>
+            <view>物流单号：<text>{{expressList.shipping_code}}</text></view>
+        </view>
+        <view class="express-copy" bindtap="copyExpress">复制</view>
+    </view>
+    <view class="nbsp"></view>
+    <view class="express-list">
+        <view class="express-list-title">订单跟踪</view>
+        <view class="express-list-item" wx:for="{{expressList.deliver_info}}" wx:for-item="item" wx:for-index="index">
+            <view class="express-list-item-left">
+                <view class="circle {{index == 0?'active':''}}"></view>
+                <view class="line"></view>
+            </view>
+            <view class="express-list-item-right">
+                <view class="{{index == 0?'active':''}}">{{item.msg}}</view>
+                <view class="time {{index == 0?'active':''}}">{{item.time}}</view>
+            </view>
+        </view>
+    </view>
+</view>

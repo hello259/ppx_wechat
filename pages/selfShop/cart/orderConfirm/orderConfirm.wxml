@@ -1,0 +1,222 @@
+<!--pages/selfShop/cart/orderConfirm/orderConfirm.wxml-->
+<view class="order-confirm">
+    <!-- 收货地址 -->
+    <view style="width:100%">
+        <view class="shippping-address" wx:if="{{addressList.length != 0}}" bindtap="selectAddress">
+            <!-- 联系人 -->
+            <view class="linkman">
+                <view class="consignee">收货人：{{addressList.true_name}}</view>
+                <view class="mobile-phone">{{addressList.mob_phone}}</view>
+            </view>
+
+            <!-- 地址 -->
+            <view class="address">
+                <!-- <text></text> -->
+                收货地址：{{addressList.area_info}}{{addressList.address}}
+            </view>
+        </view>
+
+        <!-- 未添加地址 -->
+        <view class="not-added" wx:else bindtap="selectAddress">
+            <text class="iconfont icon-dizhi"></text>
+            <text>请添加收货地址</text>
+        </view>
+    </view>
+
+    <!-- 分割图 -->
+    <view class="partition-img">
+
+        <image src="../../../../images/detail-img/order_image@2x.png"></image>
+    </view>
+    <!-- 直接购买 - 商品信息 -->
+    <view class="goods-info" wx:if="{{orderGoodsList.length == 0}}">
+        <!-- 店铺分类 -->
+        <view class="store-classify" wx:for="{{goodsList.store_cart_list}}" wx:key="index" data-name="{{index}}">
+            <!-- 店铺名称呼 -->
+            <view class="store-name">
+                商家 : {{item.store_name}}
+            </view>
+
+            <view wx:for="{{item.goods_list}}" wx:for-item='subItem' wx:for-index="subIndex" wx:key="subIndex">
+                <!-- 商品分类 -->
+                <view class="goods-classify">
+                    <!-- 商品图片 -->
+                    <view class="goods-img">
+                        <image src="{{subItem.goods_image_url}}"></image>
+                    </view>
+                    <!-- 商品说明 -->
+                    <view class="goods-explain">
+                        <view class="goods-title">{{subItem.goods_name}}</view>
+                        <view class="goods-color">
+                            <text wx:for="{{subItem.goods_spec}}" wx:for-item='secondItem' wx:for-index="secondIndex"
+                                wx:key="secondIndex">{{secondItem}}</text>
+                        </view>
+                        <view class="goods-price">{{subItem.goods_price}}</view>
+                    </view>
+                </view>
+
+                <!--购买数量  -->
+                <view class="price-changes">
+                    <view class="change-hint">购买数量</view>
+                    <view class="add-and-sub">
+                        <text class="subtract" bindtap="handerGoodsNumber" data-type="subtract"
+                            data-storeIndex="{{index}}" data-goodsIndex="{{subIndex}}" data-cartId="{{subItem.cart_id}}"
+                            data-goodsId="{{subItem.goods_id}}" data-num="{{subItem.goods_num}}">-</text>
+                        <!-- <text class="number">{{subItem.goods_num}}</text> -->
+                        <input type="text" class="number" maxlength="3" value="{{subItem.goods_num}}"
+                            data-cartId="{{subItem.cart_id}}" data-goodsId="{{subItem.goods_id}}"
+                            data-num="{{subItem.goods_num}}" bindblur="inputGoodsNumber" />
+                        <text class="add" bindtap="handerGoodsNumber" data-type="add" data-storeIndex="{{index}}"
+                            data-goodsIndex="{{subIndex}}" data-cartId="{{subItem.cart_id}}"
+                            data-goodsId="{{subItem.goods_id}}" data-num="{{subItem.goods_num}}">+</text>
+                    </view>
+                </view>
+
+            </view>
+
+            <!-- 购物优惠券（红包） -->
+            <view class="coupons" bindtap="openCouponSelect" data-storeId="{{item.store_id}}">
+                <text class="coupons-hint">新人购物红包...</text>
+                <text class="coupons-content"
+                    wx:if="{{isCouponStatus}}">满{{item.checkedCoupon.voucherLimit}}减{{item.checkedCoupon.voucherPrice}}</text>
+            </view>
+
+            <!-- 买家留言 -->
+            <view class="leave-words">
+                <text class="massage-title">买家留言：</text>
+                <view>
+
+                    <textarea class="massage-contents" value="{{leaveWord}}" bindblur="getLeaveWord"
+                        placeholder="选填  给买家留言吧" placeholder-style="color:#e4e4e4;" maxlength="50" wx:if="{{isShow}}" />
+                    <view class="massage-contents-hidden" wx:else>选填  给买家留言吧</view>
+                </view>
+                
+            </view>
+            <!-- 商品合计 -->
+            <view class="total-price">
+                <view class="statistics">
+                    共{{item.goods_list.length}}件商品 小计:
+                    <text class="price">￥{{goodsTotal || item.store_goods_total}}</text>
+                </view>
+                <view class="carriage">运费：￥{{goodsList.freight_amount}}元</view>
+            </view>
+        </view>
+    </view>
+
+
+    <!--待支付订单 - 商品信息 -->
+    <view class="goods-info" wx:else>
+        <!-- 店铺分类 -->
+        <view class="store-classify">
+            <!-- 店铺名称呼 -->
+            <view class="store-name" >
+                商家 : {{orderGoodsList.store_name}}
+            </view>
+
+            <!-- 商品分类 -->
+            <view 
+            class="goods-classify" 
+            wx:for="{{orderGoodsList.goods_list}}" 
+            wx:for-item='subItem'
+            wx:for-index="subIndex" 
+            wx:key="subIndex">
+                <!-- 商品图片 -->
+                <view class="goods-img">
+                    <image src="{{subItem.goods_image_url}}"></image>
+                </view>
+                <!-- 商品说明 -->
+                <view class="goods-explain">
+                    <view class="goods-title">{{subItem.goods_name}}</view>
+                    <view class="goods-color">
+                <text 
+                wx:for="{{subItem.goods_spec}}" 
+                wx:for-item='secondItem'
+                wx:for-index="secondIndex" 
+                wx:key="secondIndex">{{secondItem}}</text>
+                </view>
+                    <view class="goods-price">{{subItem.goods_price}}</view>
+                </view>
+            </view>
+
+
+            <!-- 购物优惠券（红包） -->
+            <!-- <view class="coupons">
+                <text class="coupons-hint">新人购物红包...</text>
+                <text class="coupons-content">满5.10减5.00</text>
+            </view> -->
+            <!-- 买家留言 -->
+            <view class="leave-words">
+                <text class="massage-title">买家留言：</text>
+                <textarea value="{{leaveWord}}" disabled bindblur="getLeaveWord" placeholder="未留言" placeholder-style="color:#e4e4e4;" maxlength="50" />
+            </view>
+            <!-- 商品合计 -->
+            <view class="total-price">
+                <view class="statistics">
+                    共{{orderGoodsList.goods_list.length}}件商品 小计:
+                    <text class="price">￥{{orderGoodsList.goods_amount}}</text>
+                </view>
+                <view class="carriage">运费：￥{{orderGoodsList.shipping_fee}}元</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 立即支付 -->
+    <view class="pay">
+        <button bindtap="payNow">立即支付</button>
+    </view>
+
+    <!-- 优惠券选择弹出框 -->
+    <view class="coupon-module" hidden="{{isSelectBox}}" catchtouchmove="stopPageScroll">
+        <view class="select-coupon"
+        wx:for="{{goodsList.store_cart_list}}"
+        wx:key="index"
+        >
+            <!-- 店铺名 -->
+            <view class="store"
+            >{{item.store_name}}店铺</view>
+            
+                <!-- 优惠券分类 -->
+            <view class="coupon-classify">
+                <!-- 优惠券 -->
+                <view 
+                class="coupon-detail"
+                wx:for="{{item.store_voucher_list}}"
+                wx:for-index="subIndex"
+                wx:for-item="subItem"
+                wx:key="subIndex"
+                >
+                    <view class="detail">
+                        <view class="price">
+                            <text>{{subItem.voucher_price}}</text>元
+                        </view>
+                        <text class="require">满{{subItem.voucher_limit}}元可用</text>
+                        <text class="deadline">有效期 {{subItem.voucher_start_time}}-{{subItem.voucher_end_time}}</text>
+                    </view>
+                    <!-- 选择按钮 -->
+                    <view 
+                    class="iconfont {{subItem.voucher_selected ? ' icon-checked' : 'select'}}" bindtap="couponSelectStatus"
+                    data-storeId="{{item.store_id}}"
+                    data-voucherTId="{{subItem.voucher_t_id}}"
+                    data-voucherPrice="{{subItem.voucher_price}}"
+                    data-voucherLimit="{{subItem.voucher_limit}}"
+                    ></view>
+                    <!-- <view class="iconfont icon-checked" bindtap="couponSelect"></view> -->
+                </view>
+                <!-- 暂不使用 -->
+                <view class="nonuse">
+                    <text>暂不使用优惠</text>
+                    <view 
+                    class="iconfont {{isNonuseCoupon ? ' icon-checked' : 'select'}}" 
+                    bindtap="nonuseCoupon"
+                    data-storeId="{{item.store_id}}"></view>
+                </view>
+            </view>
+        </view>
+        <view class="close" bindtap="closeCouponSelect">
+            <button>关闭</button>
+        </view>
+    </view>
+
+    <!-- 遮罩层 -->
+  <view class="mask" hidden="{{isMask}}" catchtouchmove="stopPageScroll"></view>
+</view>

@@ -1,0 +1,63 @@
+/* 规则弹出层 */
+.the-announcement {
+   position: fixed;
+   top: 100rpx;
+   left: 30rpx;
+   /* width: 330rpx; */
+   height: 56rpx;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   z-index: 9999;
+}
+
+.the-announcement .head-img {
+   width: 48rpx;
+   height: 48rpx;
+   background-color: #ccc;
+   border-radius: 48rpx;
+   margin-right: -15rpx;
+   overflow:hidden;
+   z-index: 999;
+   position: relative;
+}
+
+.the-announcement .head-img image {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+.the-announcement .head-img .default-img {
+   z-index: 10;
+}
+
+.the-announcement .announcement-container {
+   padding: 0 40rpx;
+   box-sizing: border-box;
+   position: relative;
+   /* width: 306rpx; */
+   height: 36rpx;
+   background-color: rgba(0, 0, 0, 0.5);
+   color: #FFFDFD;
+   font-size: 20rpx;
+   text-align: center;
+   line-height: 36rpx;
+   border-radius: 36rpx;
+}
+
+.the-announcement .announcement-container::before {
+   content: "";
+   display: block;
+   position: absolute;
+   height: 15rpx;
+   width: 15rpx;
+   top: 12rpx;
+   right: 0rpx;
+   margin-right: 15rpx;
+   border-top: 1px solid #b6b6b6;
+   border-right: 1px solid #b6b6b6;
+   transform: rotate(45deg);
+}

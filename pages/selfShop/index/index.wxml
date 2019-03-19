@@ -1,0 +1,675 @@
+<view class="index-container" class="{{show?'overflow-hidden':''}}">
+    <!-- 侧边栏 -->
+    <view class='animation' animation="{{animationData}}"
+        style="height:100%;position:fixed;visibility:{{show ? 'visible':'hidden'}}">
+        <view class='animation-content'>
+
+            <view class="weui-tab">
+                <view class="weui-navbar">
+                    <block wx:for="{{tabs}}" wx:key="*this">
+                        <view id="{{index}}"
+                            class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+                            bindtap="tabClick">
+                            <view class="weui-navbar__title {{activeIndex == index ? 'titleActive' : ''}}">{{item}}</view>
+                        </view>
+                    </block>
+                </view>
+                <view class="weui-tab__panel">
+                    <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                        <!-- 商品分类切换 -->
+                        <view class="animation-search">
+                            <image style="width: 32rpx;height:32rpx;" src="../../../images/index/icon_seach_nor.png" />
+                            <input type="text" value="{{searchClass}}" placeholder="搜索你喜欢的分类" confirm-type="search" bindconfirm="handleSearch"/>
+                        </view>
+                        <view class="weui-tab goodsClass">
+                            <!-- <scroll-view scroll-x="true">
+                                <view class="weui-navbar">
+
+                                    <block wx:for="{{tabs2}}" wx:key="*this">
+                                        <view id="{{index}}"
+                                            class="weui-navbar__item {{activeIndex2 == index ? 'weui-bar__item_on' : ''}}"
+                                            bindtap="tabClick2">
+                                            <view class="weui-navbar__title">{{item}}</view>
+                                        </view>
+                                    </block>
+
+                                </view>
+                            </scroll-view> -->
+                            <view class="weui-tab__panel">
+                                <view class="weui-tab__content" hidden="{{activeIndex2 != 0}}">
+                                    <view class="goodsClass-item" wx:for="{{goodsClassList}}" wx:key="index">
+                                        <view class="goodsClass-item-one" wx:if="{{item.two_subclass.length > 0}}">{{item.gc_name}}</view>
+                                        <view class="goodsClass-item-list" wx:for="{{item.two_subclass}}" wx:for-item='twoitem' wx:key="index2">
+                                            <view class="goodsClass-item-two" wx:if="{{twoitem.three_subclass.length > 0}}">{{twoitem.gc_name}}</view>
+                                            <view class="goodsClass-item-list-item" >
+                                                <view class="goods-item" wx:for="{{twoitem.three_subclass}}" wx:for-item='threeitem' data-id="{{threeitem.gc_id}}" bindtap="toClass">
+                                                    <image style="width: 100rpx;height:100rpx;"
+                                                        src="{{threeitem.gc_image}}" />
+                                                    <view>{{threeitem.gc_name}}</view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="weui-tab__content" hidden="{{activeIndex2 != 1}}">321
+                                </view>
+
+                            </view>
+                        </view>
+
+                    </view>
+                    <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                        <view class="animation-search">
+                            <image style="width: 32rpx;height:32rpx;" src="../../../images/index/icon_seach_nor.png" />
+                            <input type="text" placeholder="搜索你喜欢的商品" />
+                        </view>
+                        <view class="goodsBrand">
+                            
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="animation-content-close" bindtap="filterHide"></view>
+    </view>
+    <view wx:if="{{copyclose}}" class="wx-popup" catchtouchmove='true'>
+        <view class='popup-container' wx:if="{{isauth}}">
+            <image style="width: 100%;height:100%;" src="../../../images/index/hongbao-bg.png" />
+            <view class="popup-auth-btn">
+                <view class="countDown">{{wxTimer}}</view>
+                <!-- <image class="popup-auth-btn-img" style="width: 350rpx;height:100rpx;" src="../../../images/index/auth-btn.png" /> -->
+                <button class="auth-btn" type="default" open-type="getUserInfo"
+                    bindgetuserinfo="getuserinfo">授权</button>
+                <image class="popup-auth-btn-point" style="width: 100rpx;height:70rpx;"
+                    src="../../../images/index/point.png" />
+            </view>
+        </view>
+        <view class='popup-container' wx:if="{{ishongbao}}" bindtap="gethongbao">
+            <image style="width: 100%;height:100%;" src="../../../images/index/gethongbao.png" />
+        </view>
+        <view class='popup-container' wx:if="{{iscopy}}">
+            <button class="copy-btn" type="default" bindtap="copywx"></button>
+            <image style="width: 100%;height:100%;" src="../../../images/index/copywx.png" />
+        </view>
+        <view class='popup-container copySuccess' wx:if="{{iscopySuccess}}" bindtap="">
+            <image style="width: 100%;height:100%;" src="../../../images/index/copysuccess.png" />
+        </view>
+    </view>
+
+    <!-- header -->
+
+    <view class="header-banner">
+        <image class="header-banner-img" style="width: 100%;height:600rpx;"
+            src="../../../images/index/home_bg_nor.png" />
+        <view class='input'>
+            <view class="checkSide" bindtap="filter">
+                <image style="width: 38rpx; height: 38rpx;" mode="aspectFill"
+                    src="../../../images/index/home_icon_sort_nor.png" />
+                <text>分类</text>
+            </view>
+            <view class='search_input'>
+                <image bindtap='handleSearch' style="width: 20rpx; height: 20rpx;" mode="aspectFill"
+                    src="../../../images/index/search-btn.png" />
+                <input placeholder-class="placeholderColor" disabled="true" type="text" value=""
+                    bindinput="searchValueInput" confirm-type="search" bindconfirm="handleSearch"
+                    placeholder="选择您要批发的商品" catchtap="toSearch" />
+            </view>
+        </view>
+        <view class="other-modules">
+            <swiper class="btn-swiper" bindchange="btnSwiperChange" current="{{btnCurrentSwiper}}"
+                indicator-dots="{{false}}" autoplay="{{false}}" circular="{{true}}">
+                <swiper-item>
+                    <view class="icon-btn" wx:for="{{btnList}}" data-id="{{item.data}}" data-type="{{item.type}}" data-suffix="{{item.data_suffix}}" bindtap="btnTo">
+                        <!-- <image style="width: 107rpx; height: 107rpx;" mode="" src="../../../images/index/store_icon_new.png"></image> -->
+                        <image style="width: 107rpx; height: 107rpx;" mode="" src="{{item.image}}"></image>
+                        <view>{{item.subject}}</view>
+                    </view>
+                </swiper-item>
+                <!-- <swiper-item>
+                    <view class="icon-btn" bindtap="toNew" data-id="{{btnList[0].data}}">
+                        <image style="width: 107rpx; height: 107rpx;" mode="" src="{{btnList[0].image}}"></image>
+                        <view>{{btnList[0].subject}}</view>
+                    </view>
+                    <view class="icon-btn" bindtap="toRob" data-id="{{btnList[1].data}}">
+                        <image style="width: 107rpx; height: 107rpx;" mode="" src="{{btnList[1].image}}"></image>
+                        <view>{{btnList[1].subject}}</view>
+                    </view>
+                    <view class="icon-btn" bindtap="toSpike" data-id="{{btnList[2].data}}">
+                        <image style="width: 107rpx; height: 107rpx;" mode="" src="{{btnList[2].image}}"></image>
+                        <view>{{btnList[2].subject}}</view>
+                    </view>
+                </swiper-item> -->
+            </swiper>
+            <!--重置小圆点的样式  -->
+            <!-- <view class="dots">
+                <block wx:for="{{[1,2]}}" wx:key="index">
+                    <view class="dot {{index == btnCurrentSwiper ? ' active' : ''}}"></view>
+                </block>
+            </view> -->
+        </view>
+    </view>
+    <view class="container-list">
+        <!-- banner轮播 -->
+        <view class="swiper-container">
+            <swiper class="banner-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}"
+                indicator-color="{{indicatorCo}}" indicator-active-color="{{indicatoraAC}}" interval="{{interval}}"
+                duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange"
+                class="swiper">
+                <block wx:for="{{imgUrls.item}}" wx:key="unique">
+                    <swiper-item>
+                        <!-- <swiper-item> -->
+                        <image src="{{item.image}}" class="img" data-type="{{item.type}}" data-dataUrl="{{item.data}}"
+                            bindtap="jumpNewManual" mode="aspectFill" />
+                        <!-- </swiper-item> -->
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view> 
+
+        <!-- 投诉方式 -->
+        <!-- <view class="complaints-way">
+            <view class="way" bindtap="copyClipboard" data-number="2701770036">
+                <view class="complaints-icon">
+                    <text class="iconfont icon-qq"></text>
+                    <text>QQ投诉</text>
+                </view>
+                <view class="contact-way">2701770036</view>
+            </view>
+            <view class="way" bindtap="callNumber">
+                <view class="complaints-icon">
+                    <text class="iconfont icon-phone"></text>
+                    <text>电话投诉</text>
+                </view>
+                <view class="contact-way">020-28122324</view>
+            </view>
+            <view class="way" bindtap="copyClipboard" data-number="PP20190107">
+                <view class="complaints-icon">
+                    <text class="iconfont icon-wechat"></text>
+                    <text>微信投诉</text>
+                </view>
+                <view class="contact-way">PP20190107</view>
+            </view>
+        </view> -->
+        
+        
+        <!-- 新人超值包邮 - old -->
+        <!-- <view class="new-peoplo-home">
+            <view class="new-people-container">
+                <image src="{{newPeopleList.item.image}}"></image>
+            </view>
+            <view 
+            class="new-people-container">
+                <view class="container-left" bindtap="discountGoodsDateil3">
+                    <image src='{{newPeopleDetailList.item.square_image}}'></image>
+                </view>
+                <view class="container-right">
+                    <view class="up" bindtap="discountGoodsDateil1">
+                    <image src='{{newPeopleDetailList.item.rectangle1_image}}'></image>
+                    </view>
+                    <view class="down" bindtap="discountGoodsDateil2">
+                    <image src='{{newPeopleDetailList.item.rectangle2_image}}'></image>
+                    </view>
+                </view>
+            </view> 
+        </view>  -->
+
+        <!-- 规则弹出层 -->
+        <view wx:if="{{database !=''}}">
+            <supernatant id="supernatant"
+             animation="{{beginAnimation}}" 
+             bind:clickMe="clickTap" 
+             imgUrl="{{database.head_img}}"
+             userInfo="{{database.text}}" 
+             goodsId="66"></supernatant>
+        </view>
+
+        
+
+        <!-- 新人超值包邮  --》 热门板块1.3版 -->
+        <view class="hot-plate" >
+            <view 
+            wx:for="{{recommended_six_block.item}}"
+            wx:key="index"
+            class="{{index==1 || index== 5 ? 'hot-classify-max' : 'hot-classify'}}"
+            bindtap="jumpNewManual" 
+            data-type="{{item.type}}"
+            data-dataUrl="{{item.data}}">
+                <view class="posters">
+                    <image src="{{item.image}}"></image>
+                </view>
+                <view class="classify-title">{{item.subject}}</view>
+            </view>
+
+            <!-- <view class="hot-classify" bindtap="hotGoSpecial" data-id="{{recommended_three_block[0].item.rectangle1_data}}">
+                <view class="posters">
+                    <image src="{{recommended_three_block[0].item.rectangle1_image}}"></image>
+                </view>
+                <view class="classify-title">{{recommended_three_block[0].item.rectangle1_data_suffix}}</view>
+            </view>
+            <view class="hot-classify-max" bindtap="hotGoSpecial" data-id="{{recommended_three_block[0].item.rectangle2_data}}">
+                <view class="posters">
+                    <image src="{{recommended_three_block[0].item.rectangle2_image}}" mode="scaleToFit"></image>
+                </view>
+                <view class="classify-title">{{recommended_three_block[0].item.rectangle2_data_suffix}}</view>
+            </view>
+            <view class="hot-classify" bindtap="hotGoSpecial" data-id="{{recommended_three_block[0].item.square_data}}">
+                <view class="posters">
+                    <image src="{{recommended_three_block[0].item.square_image}}"></image>
+                </view>
+                <view class="classify-title">{{recommended_three_block[0].item.square_data_suffix}}</view>
+            </view>
+            <view class="hot-classify" bindtap="hotGoSpecial" data-id="{{recommended_three_block[1].item.rectangle1_data}}">
+                <view class="posters">
+                    <image src="{{recommended_three_block[1].item.rectangle1_image}}"></image>
+                </view>
+                <view class="classify-title">{{recommended_three_block[1].item.rectangle1_data_suffix}}</view>
+            </view>
+            <view class="hot-classify" bindtap="hotGoSpecial" data-id="{{recommended_three_block[1].item.rectangle2_data}}">
+                <view class="posters">
+                    <image src="{{recommended_three_block[1].item.rectangle2_image}}" mode="scaleToFit"></image>
+                </view>
+                <view class="classify-title">{{recommended_three_block[1].item.rectangle2_data_suffix}}</view>
+            </view>
+            <view class=" hot-classify-max" bindtap="hotGoSpecial" data-id="{{recommended_three_block[1].item.square_data}}">
+                <view class="posters">
+                    <image src="{{recommended_three_block[1].item.square_image}}"></image>
+                </view>
+                <view class="classify-title">{{recommended_three_block[1].item.square_data_suffix}}</view>
+            </view> -->
+        </view>
+
+        <!-- home1 新手入口 -->
+        <view class="home1" style="width:100%" wx:if="{{isHome1SHow}}">
+            <block  
+            wx:for="{{home1}}" 
+            wx:key="index">
+            <image 
+            src="{{item.image}}" 
+            class="{{index>0 ? 'second': 'first'}}"
+            data-dataUrl="{{item.data}}"
+            data-type="{{item.type}}"
+            bindtap="jumpNewManual"
+            ></image>
+            </block>
+        </view> 
+
+        <!-- 重磅消息 -->
+        <!-- <view class="news-message">
+            <image src="../../../images/index/home_msg.png"></image>
+        </view> -->
+
+        <!-- 爆品快抢 -->
+        <view class="explosive-goods" wx:if="{{isExplosiveHide}}">
+            <view class="explosive-goods-title">爆品快抢</view>
+            <view class="explosive-goods-time">
+                <view class="morning-scene">{{specialList.title}}</view>
+                <text class="cut-off-rule">|</text>
+                <view class="time-remaining">
+                    <text class="time-remaining-hint">还剩</text>
+                    <view class="count-down">
+                        <text class="time">{{clock.hours}}</text>
+                        <text>:</text>
+                        <text class="time">{{clock.minutes}}</text>
+                        <text>:</text>
+                        <text class="time">{{clock.seconds}}</text>
+                    </view>
+                </view>
+                <view class="indicator">
+                    <image src="../../../images/index/btn_arrow_nor.png"></image>
+                </view>
+            </view>
+
+            <!-- 图片滑动 -->
+            <view class="explosive-goods-swiper">
+                <scroll-view scroll-x="true">
+                    <view class="goods-detail" wx:for="{{specialList.goods}}" wx:for-item="subItem"
+                        wx:for-index="subIndex" wx:key="subIndex" data-id="{{subItem.goods_id}}"
+                        bindtap="toExplosiveGoodsDetail">
+                        <view class="goods-img">
+                            <image src="{{subItem.goods_image}}"></image>
+                        </view>
+                        <view class="goods-price">
+                            <view class="fast-rob-price">
+                                <text class="fast-rob-hint">快抢价</text>
+                                <text class="new-price">￥{{subItem.xianshi_price}}</text>
+                            </view>
+                            <view class="old-price">￥{{subItem.market_price}}</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <!-- <view>1233333333333333333333333333333333</view> -->
+
+        <!-- 严选好物 -->
+        <view class="strict-selection">
+            <view wx:for="{{strictSelectionList}}" wx:key="index" class="{{index<2? 'big-classify' : 'small-classify'}}"
+                data-xianshiId="{{item.data}}">
+                <image src="{{item.image}}"></image>
+            </view>
+        </view>
+
+        <!-- 必拼秒杀 -->
+        <view class="seckill-goods explosive-goods " wx:if="{{isSpeialHide}}">
+            <!-- 头部共用的爆品快抢的样式 -->
+            <!-- <view class="explosive-goods-title" style="color:#333333">{{specialBeginList.title}}</view> -->
+            <view class="explosive-goods-title" style="color:#333333">必拼秒杀</view>
+            <view class="explosive-goods-time">
+                <view class="time-remaining">
+                    <text class="time-remaining-hint">离开启还剩</text>
+                    <view class="count-down">
+                        <text class="">{{clock2.hours}}</text>
+                        <text>:</text>
+                        <text class="time">{{clock2.minutes}}</text>
+                        <text>:</text>
+                        <text class="time">{{clock2.seconds}}</text>
+                    </view>
+                </view>
+                <view class="indicator">
+                    <image src="../../../images/index/btn_arrow_nor.png"></image>
+                </view>
+            </view>
+
+            <!-- 图片滑动 -->
+            <view class="seckill-goods-swiper">
+                <scroll-view scroll-x="true">
+
+                    <view class="goods-detail" wx:for="{{specialBeginList.item}}" wx:key="index"
+                        data-id="{{item.xianshi_id}}" bindtap="toSeckillGoodsDetail">
+                        <view class="goods-img">
+                            <image src="{{item.special_banner_index}}" mode="scaleToFill"></image>
+                        </view>
+                        <view class="activity-name">
+                            {{item.xianshi_name}}
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+
+        <!-- 分类推荐 -->
+        <view>
+            <view class="classify-recomment" wx:for="{{specialPlateList.item}}" wx:key="index"
+                >
+                <view class="recomment-image" wx:if="{{item.goods.length != 0}}" data-xianshiid="{{item.xianshi_id}}" bindtap="toClassifyGoodsDetail">
+                    <image src="{{item.special_banner_index}}" ></image>
+                </view>
+                <!-- 1.2版可滑动 -->
+                <!-- <view class="classify-recomment-swiper">
+                    <scroll-view scroll-x="true" style="width:100%">
+                        <view class="recomment-detail" wx:for="{{item.goods}}" wx:for-item="subItem"
+                            wx:for-index="subIndex" wx:key="subIndex" data-id="{{subItem.goods_id}}"
+                            data-xianshiid="{{item.xianshi_id}}" catchtap="toClassifyGoodsDetail">
+                            <view class="recomment-detail-image">
+                                <image src="{{subItem.goods_image}}" mode="aspectFit"></image>
+                            </view>
+                            <view class="recomment-detail-info">
+                                <view class="recomment-detail-title">
+                                    {{subItem.goods_name}}
+                                </view>
+                                <view class="recomment-detail-price">
+                                    <view class="detail-price">
+                                        <text class="new-price">￥{{subItem.xianshi_price}}</text>
+                                        <text class="old-price">￥{{subItem.market_price}}</text> 
+                                    </view>
+                                    <view class="price-hint">批发价</view>
+                                </view>
+                            </view>
+                            <view></view>
+                        </view>
+                    </scroll-view>
+                </view> -->
+                <!-- 1.3版本 -->
+                <view class="classify-recomment-swiper">
+                        <view class="recomment-detail" wx:for="{{item.goods}}" wx:for-item="subItem"
+                            wx:for-index="subIndex" wx:key="subIndex" data-id="{{subItem.goods_id}}"
+                            data-xianshiid="{{item.xianshi_id}}" catchtap="toClassifyGoodsDetail">
+                            <view class="recomment-detail-image">
+                                <image src="{{subItem.goods_image}}" ></image>
+                            </view>
+                            <view class="recomment-detail-info">
+                                <view class="recomment-detail-title">
+                                    {{subItem.goods_name}}
+                                </view>
+                                <view class="recomment-detail-price">
+                                    <view class="detail-price">
+                                        <text class="new-price">￥{{subItem.xianshi_price}}</text>
+                                        <!-- <text class="old-price">￥{{subItem.market_price}}</text>  -->
+                                    </view>
+                                    <view class="price-hint">批发价</view>
+                                </view>
+                            </view>
+                        </view>
+                </view>
+                <!-- 品牌模块 -->
+                <view class="brand-recommended"
+                data-xianshiid="{{item.xianshi_id}}" bindtap="toClassifyGoodsDetail">
+                    <view class="brand-plate">
+                        <image src="{{item.special_banner_index}}" mode="scaleToFill"></image>
+                    </view>
+                    <view class="brand-container">
+                        <view class="brand-activity-title">{{item.xianshi_explain}}</view>
+                        <view class="brand-activity-discount"><text>{{item.special_rate}}</text> </view>
+                    </view>
+                </view>
+
+            </view>
+        </view>
+
+        <!-- 为你推荐 -->
+        <view class="recommendHead">
+            <view class="recommendHead-title">为你推荐</view>
+            <view class="recommendHead-text" bindtap="toSearchList">
+                <text decode="true">好物多分享 批发多便宜&nbsp;&nbsp;</text>
+                <image style="width: 34rpx; height: 34rpx;" mode="" src="../../../images/index/btn_arrow_nor.png">
+                </image>
+            </view>
+            <view class="res-list">
+                <block wx:for="{{recommendList.item}}" wx:key="unique">
+                    <view class="res-list-item" data-id="{{item.goods_id}}" bindtap='toDetail'>
+                        <image style="width: 100%; height: 339rpx;" mode=""
+                            src="{{item.goods_image_url || item.goods_image}}"></image>
+                        <view class="res-list-item-msg">
+                            <view class="res-list-item-msg-title">{{item.goods_name}}</view>
+                            <view class="res-list-item-msg-label">{{item.goods_jingle}}</view>
+                            <view>
+                                <text decode="true"
+                                    class="res-list-item-msg-price">￥{{item.promotion_price}}&nbsp;&nbsp;</text>
+                                <text class="res-list-item-msg-price-title">批发价</text>
+                            </view>
+                            <view class="res-list-item-msg-bottom">
+                                <view class="res-list-item-msg-marketPrice">
+                                    ￥{{item.goods_marketprice || item.promotion_price}}</view>
+                                <view class="">{{item.applause_rate}}%好评</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+
+        <!-- 规则弹出层 -->
+        <!-- <view class="rule-hint">
+
+        </view> -->
+
+        <!-- 爆品推荐 -->
+        <!-- <view class="recommend-pro">
+        <view class="recommend-title">
+            <image style="width: 17rpx; height: 24rpx;" mode="" src="../../../images/index/index-title-left.png"></image>
+            <text class="recommend-text">爆品推荐</text>
+            <image style="width: 17rpx; height: 24rpx;" mode="" src="../../../images/index/index-title-right.png"></image>
+        </view>
+        <view class="recommend-list">
+            <view class="recommend-list-item">
+                <view class="recommend-list-item-img">
+                    <image style="width: 220rpx; height: 220rpx;" mode="" src="http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180531142617331.jpg"></image>
+                </view>
+                <view class="recommend-list-item-pro">
+                    <view class="pro-title">瓷肌面膜贴补水保湿美白提亮瓷肌面膜贴补水保湿美白提亮瓷肌面膜贴补水保湿美白提亮</view>
+                    <view class="pro-marketPrice-block ">
+                        <text decode="{{true}}">市场价&nbsp;</text>
+                        <text class="pro-marketPrice">￥199</text>
+                    </view>
+                    <view class="pro-price-block">
+                        <view>
+                            <text decode="{{true}}">爆款价&nbsp;</text>
+                            <text class="pro-price-symbol">￥</text>
+                            <text class="pro-price">189</text>
+                        </view>
+                        <view>
+                            <text decode="{{true}}">剩余时间:&nbsp;16:32:32</text>
+                        </view>
+                    </view>
+                    <view class="pro-addCart-block">
+                        <view>
+                            <view class="pro-progress">
+                                <progress stroke-width="10px" backgroundColor="#DDDDDD" border-radius="10px" percent="80"
+                                    active color="#FF3931" />
+                            </view>
+                            <view class="pro-addCart">
+                                <image style="width: 33rpx; height: 29rpx;" mode="" src="../../../images/index/shop-cart.png"></image>
+                                <text decode="{{true}}">&nbsp;&nbsp;加入</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="recommend-list-item">
+                <view class="recommend-list-item-img">
+                    <image style="width: 220rpx; height: 220rpx;" mode="" src="http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180531142617331.jpg"></image>
+                </view>
+                <view class="recommend-list-item-pro">
+                    <view class="pro-title">瓷肌面膜贴补水保湿美白提亮瓷肌面膜贴补水保湿美白提亮瓷肌面膜贴补水保湿美白提亮</view>
+                    <view class="pro-marketPrice-block ">
+                        <text decode="{{true}}">市场价&nbsp;</text>
+                        <text class="pro-marketPrice">￥199</text>
+                    </view>
+                    <view class="pro-price-block">
+                        <view>
+                            <text decode="{{true}}">爆款价&nbsp;</text>
+                            <text class="pro-price-symbol">￥</text>
+                            <text class="pro-price">189</text>
+                        </view>
+                        <view>
+                            <text decode="{{true}}">剩余时间:&nbsp;16:32:32</text>
+                        </view>
+                    </view>
+                    <view class="pro-addCart-block">
+                        <view>
+                            <view class="pro-progress">
+                                <progress stroke-width="10px" backgroundColor="#DDDDDD" border-radius="10px" percent="80"
+                                    active color="#FF3931" />
+                            </view>
+                            <view class="pro-addCart">
+                                <image style="width: 33rpx; height: 29rpx;" mode="" src="../../../images/index/shop-cart.png"></image>
+                                <text decode="{{true}}">&nbsp;&nbsp;加入</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+        <!-- 最爱热拼 -->
+        <!-- <view class="assemble-pro">
+        <view class="assemble-title">
+            <image style="width: 17rpx; height: 24rpx;" mode="" src="../../../images/index/index-title-left.png"></image>
+            <text class="assemble-text">最爱热拼</text>
+            <image style="width: 17rpx; height: 24rpx;" mode="" src="../../../images/index/index-title-right.png"></image>
+        </view>
+        <view class="assemble-list">
+            <view class="assemble-list-item">
+                <image style="width: 347rpx; height:347rpx" mode="" src="http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180531142617331.jpg"></image>
+                <view>
+                    <p class="assemble-pro-title">瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深</p>
+                    <view class="assemble-marketPrice-block">
+                        <text decode="{{true}}">市场价&nbsp;</text>
+                        <text class="assemble-marketPrice">￥199</text>
+                    </view>
+                    <view class="assemble-price-block">
+                        <view>
+                            <text decode="{{true}}">批发价&nbsp;</text>
+                            <text class="assemble-price-symbol">￥</text>
+                            <text class="assemble-price">189</text>
+                        </view>
+                        <view class="assemble-addCart">
+                            <image style="width: 33rpx; height: 29rpx;" mode="" src="../../../images/index/shop-cart.png"></image>
+                            <text decode="{{true}}">&nbsp;&nbsp;批发</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="assemble-list-item">
+                <image style="width: 347rpx; height:347rpx" mode="" src="http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180531142617331.jpg"></image>
+                <view>
+                    <p class="assemble-pro-title">瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深</p>
+                    <view class="assemble-marketPrice-block">
+                        <text decode="{{true}}">市场价&nbsp;</text>
+                        <text class="assemble-marketPrice">￥199</text>
+                    </view>
+                    <view class="assemble-price-block">
+                        <view>
+                            <text decode="{{true}}">批发价&nbsp;</text>
+                            <text class="assemble-price-symbol">￥</text>
+                            <text class="assemble-price">189</text>
+                        </view>
+                        <view class="assemble-addCart">
+                            <image style="width: 33rpx; height: 29rpx;" mode="" src="../../../images/index/shop-cart.png"></image>
+                            <text decode="{{true}}">&nbsp;&nbsp;批发</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="assemble-list-item">
+                <image style="width: 347rpx; height:347rpx" mode="" src="http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180531142617331.jpg"></image>
+                <view>
+                    <p class="assemble-pro-title">瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深</p>
+                    <view class="assemble-marketPrice-block">
+                        <text decode="{{true}}">市场价&nbsp;</text>
+                        <text class="assemble-marketPrice">￥199</text>
+                    </view>
+                    <view class="assemble-price-block">
+                        <view>
+                            <text decode="{{true}}">批发价&nbsp;</text>
+                            <text class="assemble-price-symbol">￥</text>
+                            <text class="assemble-price">189</text>
+                        </view>
+                        <view class="assemble-addCart">
+                            <image style="width: 33rpx; height: 29rpx;" mode="" src="../../../images/index/shop-cart.png"></image>
+                            <text decode="{{true}}">&nbsp;&nbsp;批发</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="assemble-list-item">
+                <image style="width: 347rpx; height:347rpx" mode="" src="http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180531142617331.jpg"></image>
+                <view>
+                    <p class="assemble-pro-title">瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深瓷肌祛痘洗面奶男士深</p>
+                    <view class="assemble-marketPrice-block">
+                        <text decode="{{true}}">市场价&nbsp;</text>
+                        <text class="assemble-marketPrice">￥199</text>
+                    </view>
+                    <view class="assemble-price-block">
+                        <view>
+                            <text decode="{{true}}">批发价&nbsp;</text>
+                            <text class="assemble-price-symbol">￥</text>
+                            <text class="assemble-price">189</text>
+                        </view>
+                        <view class="assemble-addCart">
+                            <image style="width: 33rpx; height: 29rpx;" mode="" src="../../../images/index/shop-cart.png"></image>
+                            <text decode="{{true}}">&nbsp;&nbsp;批发</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+        <!-- 购物车icon -->
+        <!-- <view class="cart-block" style="background: url('../../../images/index/shopping_icon_car_nor.png')no-repeat; background-size:cover;">
+        <view class="cart-num">
+            0
+        </view>
+    </view> -->
+    </view>
+</view>

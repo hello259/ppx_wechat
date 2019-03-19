@@ -1,0 +1,62 @@
+<view class="orderDetail">
+    <view class="orderHead">
+        <view class="order-and-phone">
+            <view class="order-name">收货人：{{orderList.address.name}}</view>
+            <view class="order-phone">{{orderList.address.mob_phone}}</view>
+        </view>
+        <view class="order-address">收货地址：{{orderList.address.address}}</view>
+    </view>
+    <view class="order-pro">
+        <view>商家：{{orderList.store_name}}</view>
+        <view wx:for="{{orderList.goods_list}}">
+
+            <view class="order-pro-list">
+                <view style="width:167rpx;height:167rpx" class="order-pro-list-img">
+                    <image style="width:167rpx;height:167rpx" src="{{item.goods_image_url}}" />
+                </view>
+                <view class="order-pro-list-msg">
+                    <view class="order-pro-list-msg-title">
+                        {{item.goods_name}}
+                    </view>
+                    <view class="order-pro-list-msg-spec" wx:if="{{item.goods_spec}}" wx:for="{{item.goods_spec}}"
+                        wx:for-item="spec" wx:key="speckey">
+                        商品规格：{{spec}}
+                    </view>
+                    <view class="order-pro-list-msg-price">
+                        <view>￥{{item.goods_price}}</view>
+                        <text class="pro-num" decode="ture">&nbsp;&nbsp;x{{item.goods_num}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="order-pro-all-price">
+            <view class="all-price">￥{{orderList.goods_amount}}</view>
+            <view>实付：</view>
+        </view>
+    </view>
+    <view class="order-foot">
+        <view>订单备注：{{orderList.order_message?orderList.order_message:''}}</view>
+        <view class="order-sn">订单编号：{{orderList.order_sn}}</view>
+        <view>支付方式：{{orderList.payment_name}}</view>
+    </view>
+    <view class="foot-btn" wx:if="{{!btnArr[0].noBtn}}">
+        <view class="order-btn order-btn-white" wx:if="{{btnArr[0].makeGoods}}" bindtap="takeGoods" data-orderId="{{orderList.order_id}}" data-img="{{orderList.goods_list[0].goods_image_url}}">确认收货</view>
+        <!-- <view class="order-btn order-btn-white">申请售后</view> -->
+        <view class="order-btn order-btn-red" wx:if="{{btnArr[0].payBtn}}" bindtap="toPayPage" data-orderkey="{{orderList.pay_sn}}" data-orderid="{{orderList.order_id}}">立即支付</view>
+        <view class="order-btn order-btn-red" wx:if="{{btnArr[0].checkExpressBtn}}" data-orderid="{{orderList.order_id}}" bindtap="toExpress">查看物流</view>
+        <view class="order-btn order-btn-red" wx:if="{{btnArr[0].evaluate}}" bindtap="toComment" data-orderId="{{orderList.order_id}}">去评价</view>
+    </view>
+    <!-- 确认收货弹窗 -->
+    <view  wx:if="{{isshow}}" class="wx-popup" catchtouchmove='true'>
+        <view class='popup-container' >
+            <image style="width:188rpx;height:188rpx;display:block;margin:0 auto;" src="{{img}}"/>
+            <view class="goods-title1">确认收到货了吗？</view>
+            <view class="goods-title2">请收到货确认无误后，再确认收货噢！</view>
+            <view class="goods-list">
+                <view bindtap="goodsCancelBtn" class="goods-cancel-btn">取消</view>
+                <view bindtap="goodsSureBtn" class="goods-sure-btn">确认收货</view>
+            </view>
+        </view>
+    </view>
+</view>

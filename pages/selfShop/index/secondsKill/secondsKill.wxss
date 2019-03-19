@@ -1,0 +1,109 @@
+
+.no-order{
+  /* padding-top: 60px; */
+  text-align: center;
+  color:#B3B3B3;
+  font-size: 26rpx;
+  padding-top:173rpx;
+}
+.weui-tab__panel{
+margin-top:76rpx;
+}
+.weui-navbar__slider{
+width:104rpx;
+background: #FF1434;
+}
+.weui-bar__item_on{
+color:#FF1434;
+}
+.rob-head{
+  padding-top:30rpx;
+}
+.rob-head .rob-head-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#FF2C55;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom:10rpx;
+}
+.rob-head .rob-head-text .rob-head-text-time{
+  margin:0 16rpx;
+}
+.rob-head .rob-head-countDown{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color:#000;
+  margin-bottom:10rpx;
+}
+.rob-head .rob-head-countDown .rob-head-countDown-time{
+  color:#fff;
+  font-size: 26rpx;
+  background: #000;
+  padding:5rpx;
+  border-radius: 5rpx;
+}
+.pro-list .pro-list-item{
+  display: flex;
+  padding:30rpx 26rpx;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.pro-list .pro-list-item .pro-list-item-left{
+  margin-right:19rpx;
+}
+.pro-list .pro-list-item .pro-list-item-right{
+  flex: 1;
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-title{
+  word-break:break-all;
+text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
+overflow:hidden;
+color:#333;
+font-size: 28rpx;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-btnAndPrice{
+  display: flex;
+  align-items: flex-end;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-btnAndPrice .pro-list-item-price{
+  flex: 1;
+  color:#999;
+  font-size: 20rpx;
+  text-decoration: line-through;
+  margin-left:10rpx;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-btnAndPrice .pro-list-item-marketPrice{
+  font-weight: bold;
+  color:#FF3E3E;
+  font-size: 34rpx;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-btnAndPrice .pro-list-item-btn{
+  background: #FF2C55;
+  color:#fff;
+  border-radius: 5rpx;
+  width:136rpx;
+  height:46rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-btnAndPrice .pro-list-item-btn.pro-list-item-btn-soon{
+  background: #FCB755;
+}
+.pro-list .pro-list-item .pro-list-item-right .pro-list-item-numAndTime{
+  flex: 1;
+  color:#F91334;
+  font-size: 24rpx;
+  display: block;
+}

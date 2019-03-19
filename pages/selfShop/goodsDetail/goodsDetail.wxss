@@ -1,0 +1,213 @@
+page {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #f3f3f3;
+    position: relative;
+}
+
+.tour-diy {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    /* overflow-x: hidden; */
+}
+
+
+/*  轮播图 */
+
+.tour-diy .swiper {
+    position: relative;
+    background-color: #fff;
+}
+
+.tour-diy .swiper swiper {
+    width: 100%;
+    height: 630rpx;
+    text-align: center;
+}
+
+.swiper swiper swiper-item image {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 商品价格 */
+
+.goods-price {
+    width: 100%;
+    height: 120rpx;
+    background: linear-gradient(to left, #ff2f54, #ff0e19, #ff4f8e);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 30rpx;
+    font-size: 30rpx;
+}
+
+.goods-price .price .unit {
+    font-size: 44rpx;
+}
+
+.goods-price .price .newPrice {
+    font-size: 60rpx;
+    font-weight: bold;
+    margin: 0 5rpx;
+}
+
+.goods-price .price .oldPrice {
+    text-decoration: line-through;
+}
+
+.goods-price .price .txts {
+    font-size: 30rpx;
+    margin-right: 15rpx;
+}
+
+
+/* 商品名称 */
+
+.tour-diy .goods-name {
+    box-sizing: border-box;
+    width: 100%;
+    height: 140rpx;
+    background-color: #fff;
+    padding: 30rpx 25rpx;
+    /* line-height: 140rpx; */
+    color: #333333;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+
+
+/* 商品评价 */
+
+.tour-diy .goods-evaluate {
+    background-color: #fff;
+    padding: 30rpx 25rpx;
+    box-sizing: border-box;
+    margin: 20rpx 0;
+}
+
+.tour-diy .goods-evaluate .evaluate-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goods-evaluate .evaluate-title .evaluate-num {
+    font-size: 32rpx;
+    font-weight: 600;
+}
+
+.goods-evaluate .evaluate-title .see-all {
+    font-size: 28rpx;
+    color: #FF0000;
+    position: relative;
+    margin-right: 30rpx;
+}
+
+.goods-evaluate .evaluate-title .see-all::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10rpx;
+    right: -30rpx;
+    height: 15rpx;
+    width: 15rpx;
+    border-top: 1px solid #b6b6b6;
+    border-right: 1px solid #b6b6b6;
+    transform: rotate(45deg);
+    color: #FF0000;
+}
+
+.goods-evaluate .evaluate-details {
+    margin: 30rpx 0;
+}
+
+.goods-evaluate .evaluate-details .user-head {
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    color: #888888;
+}
+
+.evaluate-details .user-head image {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+
+.goods-evaluate .evaluate-details .evaluate {
+    font-size: 32rpx;
+    margin: 20rpx 0;
+}
+
+.goods-evaluate .evaluate-details .evaluate-time {
+    font-size: 22rpx;
+    color: #A7A7A7;
+}
+
+
+/* 图片间隔 */
+
+.tour-diy .interval {
+    width: 100%;
+    height: 80rpx;
+    background-color: #f3f3f3;
+    text-align: center;
+    line-height: 80rpx;
+    color: #A7A7A7;
+    font-size: 28rpx;
+}
+
+.tour-diy .interval .first {
+    margin-right: 15rpx;
+}
+
+.tour-diy .interval .last {
+    margin-left: 15rpx;
+}
+
+
+/* 图片详情 */
+
+.tour-diy .img-details .img-details-title {
+    display: block;
+    width: 100%;
+    height: 80rpx;
+    padding-left: 20rpx;
+    margin-top: 20rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    background-color: #fff;
+    line-height: 80rpx;
+    box-sizing: border-box;
+}
+
+.tour-diy .img-details .images {
+    width: 100%;
+}
+
+.img-details .images image {
+    width: 100%;
+    display: flex;
+}
+
+
+/* 内容为空时 */
+
+.empty {
+    color: #c1c1c1;
+    background-color: #fff;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 28rpx;
+}

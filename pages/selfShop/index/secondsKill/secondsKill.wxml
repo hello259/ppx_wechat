@@ -1,0 +1,70 @@
+<view class="order-page">
+  <view class="page__bd">
+      <view class="weui-tab">
+          <view class="weui-navbar">
+              <block wx:for="{{tabs}}" wx:key="*this">
+                  <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+                      bindtap="tabClick">
+                      <view class="weui-navbar__title">{{item}}</view>
+                  </view>
+              </block>
+              <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+          </view>
+          <view class="weui-tab__panel">
+              <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                <!-- 正在疯抢头部 -->
+                  <view class="rob-head">
+                    <view class="rob-head-text">
+                      <image style="width:31rpx;height:31rpx;" src="../../../../images/index/seckill_icon_time.png" />
+                      <view class="rob-head-text-time">{{reshours}}:{{resminute}}</view>
+                      <image style="width:123rpx;height:30rpx;" src="../../../../images/index/seckill_word_loading.png" />
+                    </view>
+                    <view class="rob-head-countDown">
+                      <text decode="true">剩余&nbsp;&nbsp;</text>
+                      <text class="rob-head-countDown-time" decode="true">{{hours}}</text>
+                      <text decode="true">&nbsp;:&nbsp;</text>
+                      <text class="rob-head-countDown-time" decode="true">{{minute}}</text>
+                      <text decode="true">&nbsp;:&nbsp;</text>
+                      <text class="rob-head-countDown-time" decode="true">{{second}}</text>
+                    </view>
+                  </view>
+                  <view class="pro-list">
+                    <view class="pro-list-item" wx:for="{{resList.xianshi_goods_info}}" data-id="{{item.goods_id}}" bindtap="toDetail">
+                      <view class="pro-list-item-left">
+                        <image style="width:188rpx;height:188rpx;" src="{{item.goods_image_url}}" />
+                      </view>
+                      <view class="pro-list-item-right">
+                        <view class="pro-list-item-title">{{item.goods_name}}</view>
+                        <view class="pro-list-item-btnAndPrice">
+                            <view class="pro-list-item-marketPrice">￥{{item.xianshi_price}}</view>
+                            <view class="pro-list-item-price">￥{{item.market_price}}</view>
+                          <view class="pro-list-item-btn">立即抢购</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+              </view>
+              <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                  <view class="pro-list" wx:for="{{resList.xianshi_goods_info}}" data-id="{{item.goods_id}}" bindtap="toDetail">
+                      <view class="pro-list-item" >
+                        <view class="pro-list-item-left">
+                          <image style="width:188rpx;height:188rpx;" src="{{item.goods_image_url}}" />
+                        </view>
+                        <view class="pro-list-item-right">
+                          <view class="pro-list-item-title">{{item.goods_name}}</view>
+                          <view class="pro-list-item-numAndTime" decode="true">
+                            限量{{item.goods_storage}}件 | 明日{{reshours}}:{{resminute}}开始
+                          </view>
+                          <view class="pro-list-item-btnAndPrice">
+                            <view class="pro-list-item-marketPrice">￥{{item.xianshi_price}}</view>
+                            <view class="pro-list-item-price">￥{{item.market_price}}</view>
+                            <view class="pro-list-item-btn pro-list-item-btn-soon">即将开始</view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+              </view>
+          </view>
+      </view>
+  </view>
+</view>

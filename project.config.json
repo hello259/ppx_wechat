@@ -1,0 +1,129 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.2",
+	"appid": "wx1c43ddd1cc114c49",
+	"projectname": "%E6%9C%80%E6%96%B0%E8%87%AA%E8%90%A5%E5%95%86%E5%9F%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 13,
+			"list": [
+				{
+					"id": -1,
+					"name": "购买-详情页",
+					"pathName": "pages/selfShop/buyDetail/buyDetail",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "购物车",
+					"pathName": "pages/selfShop/cart/cart",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "拼团-确认订单",
+					"pathName": "pages/selfShop/cart/orderConfirm/orderConfirm",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "购买-确认订单",
+					"pathName": "pages/selfShop/cart/orderConfirm/orderConfirm",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购物 地址",
+					"pathName": "pages/selfShop/myCenter/address/addressManShop/addressManShop",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/selfShop/myCenter/orderConfirm/orderConfirm",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购买-支付成功",
+					"pathName": "pages/selfShop/cart/orderConfirm/paymentSuccess/paymentSuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单列表",
+					"pathName": "pages/selfShop/myCenter/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "物流",
+					"pathName": "pages/selfShop/myCenter/express/express",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "必拼秒杀",
+					"pathName": "pages/selfShop/index/secondsKill/secondsKill",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "拼团-支付成功",
+					"pathName": "pages/selfShop/sharePage/sharePage",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "拼团-一键成团",
+					"pathName": "pages/selfShop/sharePage/shareGroup/shareGroup",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠券列表",
+					"pathName": "pages/selfShop/myCenter/coupon/coupon",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/selfShop/buyDetail/buyDetail",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

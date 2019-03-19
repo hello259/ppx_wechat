@@ -1,0 +1,35 @@
+<view class='login'>
+   <view class='logo-box'>
+     <image src='../../images/myCenter/ppx-logo.png'></image>
+     <text>拼拼侠</text>
+     <view  class='wechat'>手机绑定微信后,下次直接微信登录</view>
+  </view>
+  <view class='login-wrapper'>
+    <form>
+      <view class="user-input {{ishow==1?'active':''}}">
+        <input type='number' data-ishow="1" class="form-effect " bindblur="bindKeyInput" value="{{mobile}}" placeholder='请输入手机号' maxlength="11"  placeholder-style="color:#AEAEAE" focus="{{isFocus}}"></input>
+        <view class='sel-area' catchtap='area_code'>
+          <text>{{area_codes}}</text><icon></icon>
+        </view>
+        <view class='right-icon iconfont icon-delete' catchtap='clearNum' wx:if="{{ishow2}}"></view>
+      </view>
+      <view class="atten-input {{ishow==2?'active':''}}">
+        <view class='left-icon'>
+          <!-- <text class='iconfont icon-shouji'></text> -->
+          <image class='smallphone' mode='aspectFill'  src="../../images/myCenter/yanzheng.png"></image>
+        </view>
+        <input type='number' data-ishow="2" class="form-effect"  bindblur="bindKeyInputs" placeholder='请输入验证码' placeholder-style="color:#AEAEAE" value="{{verifica_code}}" maxlength="4" ></input>
+        <button class='getCode {{!disable?"active":""}}' catchtap='sendmsg' disabled="{{disable}}">{{getmsg}}</button>
+      </view>
+      <!-- <checkbox-group bindchange="agrees">
+        
+         <checkbox class='checkboxBtn'  id="check3" color="#FF7C0D" checked='checked' value='agree'/><text id='agree'>登录表示同意</text>
+        <label class="checkbox"  id="check3"></label>
+         
+          <text catchtap='agreePage'>《拼拼侠使用协议》</text>
+      </checkbox-group> -->
+      <button class='login-btn' catchtap='login' disabled="{{disables}}" type='primary'>进入</button>
+      <!-- <text class='not-register'>没有注册用户请用验证码登录即可</text> -->
+    </form>
+  </view>
+</view>

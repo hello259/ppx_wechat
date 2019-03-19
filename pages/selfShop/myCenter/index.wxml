@@ -1,0 +1,197 @@
+<view class="my-container">
+    <!-- 个人信息 -->
+    <view class="info-block" >
+        <image class="info-block-banner" style="width: 100%;" mode="" src="../../../images/myCenter/my-bg.png"></image>
+        <view class="info-img">
+            <image style="width: 144rpx; height: 144rpx;" mode="" src="{{avatar}}"></image>
+        </view>
+        <view class="info-message">
+            <view class="name-and-vip">
+                <text wx:if="{{islogin}}" class="info-name">{{nickname}}</text>
+                <button wx:if="{{!islogin}}" class='login-btn' type='warn' open-type="getUserInfo" bindgetuserinfo="getuserinfo">
+                    授权登录
+                </button>
+                <!-- <view class="info-vip">
+                    <image style="width: 28rpx; height:24rpx" mode="" src="../../../images/myCenter/vip-icon.png"></image>
+                    <text>会员等级</text>
+                </view> -->
+            </view>
+            <view class="info-sign">
+                <!-- <text>个性签名：123</text> -->
+                <view>
+                    <text decode="{{true}}">邀请码：{{invite || '暂无'}}&nbsp;</text>
+                </view>
+                <view>
+                    <text decode="{{true}}">吉祥码：{{lucky || '暂无'}}&nbsp;</text>
+                </view>
+            </view>
+        </view>
+        <view class="info-code-block">
+            <!-- <view>
+                <text decode="{{true}}">邀请码：{{invite || '暂无'}}&nbsp;</text>
+                <text class="info-btn">复制</text>
+            </view>
+            <view>
+                <text decode="{{true}}">吉祥码：{{lucky || '暂无'}}&nbsp;</text>
+                <text class="info-btn">设置</text>
+            </view> -->
+        </view>
+    </view>
+    <!-- 详情 -->
+    <view class="center-block">
+        <!-- 余额 -->
+        <!-- <view class="center-balance center-all-block">
+            <view class="center-adv">
+                <view>
+                    <image style="width: 25rpx; height: 23rpx;" mode="" src="../../../images/myCenter/money.png"></image>
+                    <text decode="{{true}}">&nbsp;共省下&nbsp;&nbsp;￥0.00</text>
+                </view>
+                <view>
+                    <image style="width: 25rpx; height: 23rpx;" mode="" src="../../../images/myCenter/horn.png"></image>
+                    <text decode="{{true}}">&nbsp;省第1笔有惊喜</text>
+                </view>
+            </view>
+            <view class="center-cash">
+                <view class="center-cash-can">
+                    可提现金额
+                    <text decode="{{true}}" class="center-cash-num">￥0.00</text>
+                </view>
+                <view class="center-cash-btn">
+                    <view>立即提现</view>
+                </view>
+            </view>
+            <view class="center-profit">
+                <view>
+                    <view class="center-profit-num">￥0.00</view>
+                    <view>本月预估</view>
+                </view>
+                <view>
+                    <view class="center-profit-num">￥0.00</view>
+                    <view>今日收益</view>
+                </view>
+                <view>
+                    <view class="center-profit-num">11</view>
+                    <view>我的团队</view>
+                </view>
+            </view>
+        </view> -->
+        <!-- 商城订单 -->
+        <view class="shop-order center-all-block">
+            <view class="shop-order-detail" data-to="/pages/selfShop/myCenter/order/order" data-type="" bindtap="routerToBar">
+                <view>商城订单</view>
+                <view class="shop-order-detail-router">
+                    <text decode="{{true}}">查看全部&nbsp;&gt;</text>
+                </view>
+            </view>
+            <view class="shop-order-state">
+                <view data-to="/pages/selfShop/myCenter/order/order?type=1" data-type="1" bindtap="routerToBar">
+                    <!-- <view class="shop-order-state-num">1</view> -->
+                    <!-- <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_pay_icon.png"></image> -->
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/qianbao.png"></image>
+                    <view>待支付</view>
+                </view>
+                <view data-to="/pages/selfShop/myCenter/order/order?type=2" data-type="2" bindtap="routerToBar">
+                    <!-- <view class="shop-order-state-num">1</view> -->
+                    <!-- <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_due_nor.png"></image> -->
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/fahuo.png"></image>
+                    <view>待发货</view>
+                </view>
+                <view data-to="/pages/selfShop/myCenter/order/order?type=3" data-type="3" bindtap="routerToBar">
+                    <!-- <view class="shop-order-state-num">1</view> -->
+                    <!-- <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_done_nor.png"></image> -->
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/shouhuo.png"></image>
+                    <view>待收货</view>
+                </view>
+                <view data-to="/pages/selfShop/myCenter/order/order?type=4" data-type="4" bindtap="routerToBar">
+                    <!-- <view class="shop-order-state-num">12</view> -->
+                    <!-- <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_rec_nor.png"></image> -->
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/wancheng.png"></image>
+                    <view>已完成</view>
+                </view>
+            </view>
+        </view>
+        <!-- 其他功能 -->
+        <view class="other-functions center-all-block other-block-item-block">
+            <view class="other-block-item" data-to="/pages/selfShop/myCenter/coupon/coupon" bindtap="routerTo">
+                <image style="width:33rpx;height:32rpx;margin-right:21rpx;" src="../../../images/myCenter/youhui.png" />
+                <view class="other-block-item-title">商城优惠券</view>
+            <text decode="true">&gt;</text>
+            </view>
+            <view class="other-block-item" data-to="/pages/selfShop/myCenter/collection/collection" bindtap="routerTo">
+                <image style="width:33rpx;height:32rpx;margin-right:21rpx;" src="../../../images/myCenter/shoucang.png" />
+                <view class="other-block-item-title">商品收藏</view>
+                <text decode="true">&gt;</text>
+            </view>
+            <view class="other-block-item" data-to="/pages/selfShop/myCenter/address/addressMan/addressMan" bindtap="routerTo">
+                <image style="width:33rpx;height:32rpx;margin-right:21rpx;" src="../../../images/myCenter/dingwei.png" />
+                <view class="other-block-item-title">收货地址</view>
+                <text decode="true">&gt;</text>
+            </view>
+            <view class="other-block-item" data-to="/pages/selfShop/cart/cart" bindtap="routerToBar">
+                <image style="width:33rpx;height:32rpx;margin-right:21rpx;" src="../../../images/myCenter/gouwu.png" />
+                <view class="other-block-item-title">购物车</view>
+                <text decode="true">&gt;</text>
+            </view>
+        </view>
+        <!-- <view class="other-functions center-all-block">
+            <view class="other-functions-block">
+                <view data-to="/pages/selfShop/myCenter/coupon/coupon" bindtap="routerTo">
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_ticket_.png"></image>
+                    <view>商城优惠券</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_pack_nor.png"></image>
+                    <view>商品收藏</view>
+                </view>
+                <view data-to="/pages/selfShop/myCenter/address/addressMan/addressMan" bindtap="routerTo">
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_addr_nor.png"></image>
+                    <view>收货地址</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/mine_icon_car_nor.png"></image>
+                    <view>购物车</view>
+                </view>
+            </view>
+        </view> -->
+        <!-- <view class="other-functions center-all-block">
+            <view class="other-functions-block">
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_profit_nor.png"></image>
+                    <view>收益</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_order_nor.png"></image>
+                    <view>淘宝订单</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_iviter_nor.png"></image>
+                    <view>邀请</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_team_nor.png"></image>
+                    <view>团队</view>
+                </view>
+            </view>
+        </view> -->
+        <!-- <view class="other-functions center-all-block">
+            <view class="other-functions-block">
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_novice_nor.png"></image>
+                    <view>新手上路</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_keep_nor.png"></image>
+                    <view>我的收藏</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_pro_nor.png"></image>
+                    <view>常见问题</view>
+                </view>
+                <view>
+                    <image style="display:block;margin:0 auto 23rpx;width: 41rpx; height: 40rpx;" mode="" src="../../../images/myCenter/icon_cus_nor.png"></image>
+                    <view>联系客服</view>
+                </view>
+            </view>
+        </view> -->
+    </view>
+</view>

@@ -1,0 +1,289 @@
+<view class="tour-diy">
+    <!-- 轮播图 -->
+    <view class="swiper">
+        <swiper bindchange="swiperChange" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" indicator-active-color="#F91334" duration="{{duration}}" current="0" circular="true">
+            <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}">
+                <image src="{{item.levelD}}" class="slide-image" width="355" height="150" />
+            </swiper-item>
+        </swiper>
+
+        <!-- <view class="img-index">
+            <text>{{current}} /</text>
+            <text>{{imgUrls.length}}</text>
+        </view> -->
+    </view>
+
+    <!-- 商品价格 -->
+    <view class="goods-price" wx:if="{{isStart}}">
+        <view class="goods-price-bgi">
+            <image src="../../../images/detail-img/xianshi-img.png"></image>
+        </view>
+        <view class="price">
+            <view class="new-price">
+                    ￥<text>{{goodsDetail.goods_info.goods_promotion_price}}</text>
+            </view>
+            <view class="xianshi">
+                <text class="hint">限时抢购</text>
+                <text class="oldPrice">￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+            </view>
+        </view>
+        <view class="time">
+            <text class="residue">{{activeText}}</text>
+            <text class="hours">{{hours}}</text>
+            <text>：</text>
+            <text class="minute">{{minute}}</text>
+            <text>：</text>
+            <text class="second">{{second}}</text>
+        </view>
+    </view>
+
+    
+    <!-- 商品价格 -->
+      <!-- 拼团商品商品价格 -->
+      <view class="pt-goods-price" wx:else>
+        <view class="pt-goods-price-bgi">
+            <image src="../../../images/detail-img/seckill2x.png"></image>
+        </view>
+        <view class="pt-price">
+            <text class="pt-unit">￥</text>
+            <text class="pt-newPrice">{{goodsDetail.goods_info.goods_price}}</text>
+            <text class="pt-oldPrice">￥{{goodsDetail.goods_info.goods_marketprice}}</text>
+        </view>
+        <view class="pt-time">
+            <!-- <text class="pt-residue">距离开始</text>
+            <text class="pt-hours">{{clock2.hours}}</text>
+            <text>：</text>
+            <text class="pt-minute">{{clock2.minutes}}</text>
+            <text>：</text>
+            <text class="pt-second">{{clock2.seconds}}</text> -->
+            <text class="residue" >月销量{{randomNum}}件</text>
+        </view>
+    </view>
+
+    <!-- 商品名称 -->
+    <view class="goods-name">
+        <view class="goods-name-title">
+            {{goodsDetail.goods_info.goods_name}}
+        </view>
+    </view>
+
+    <!-- 参与拼团 -->
+    <view class="participation" hidden="{{isStart}}">
+        <view class="now-pt">
+            <text class="under-way">{{people}}人在拼团,可直接参与</text>
+            <text class="more" bindtap="handlerShow">查看更多</text>
+        </view>
+        <view class="go-pt">
+            <view class="pt-info">
+                <image src='../../../images/detail-img/fengjing.jpg'></image>
+                <view class="details">
+                    <view class="user-name">hello-259</view>
+                    <view class="end-time">还差1人,距结束12时08分</view>
+                </view>
+                <view class="go-btn" bindtap="goToShow">去拼团</view>
+            </view>
+            <view class="pt-info">
+                <image src='../../../images/detail-img/fengjing.jpg'></image>
+                <view class="details">
+                    <view class="user-name">hello-259</view>
+                    <view class="end-time">还差1人,距结束12时08分</view>
+                </view>
+                <view class="go-btn" bindtap="goToShow">去拼团</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 商品评价 -->
+    <view class="goods-evaluate">
+        <view class="evaluate-title">
+            <view class="evaluate-num">商品评价({{goodsDetail.goods_evaluate.length}})</view>
+            <view class="see-all">查看全部</view>
+        </view>
+        <view>
+            <view wx:if="{{goodsDetail.goods_evaluate.length != 0}}">
+                <view class="evaluate-details" wx:for="{{goodsDetail.goods_evaluate}}" wx:key="{{index}}">
+                    <view class="user-head">
+                        <image src="{{item.member_avatar}}"></image>
+                        <text>{{item.geval_frommembername}}</text>
+                    </view>
+                    <view class="evaluate">{{item.geval_content}}</view>
+                    <view class="evaluate-time">2018-5-5</view>
+                </view>
+            </view>
+            <view wx:else class="empty">暂无商品评论</view>
+        </view>
+    </view>
+
+
+    <!-- 图片间隔 -->
+    <view class="interval">
+        <text class="first">——</text>
+        <text class="iconfont icon-tupian"></text>
+        <text> 详情</text>
+        <text class="last">——</text>
+    </view>
+
+    <!--  图片详细 -->
+    <view class="img-details">
+        <text class="img-details-title">商品详情</text>
+        <view wx:if="{{goodsDetail.goods_info.body.length != 0}}" class="images">
+            <image mode="widthFix" wx:for="{{goodsDetail.goods_info.body}}" wx:key="{{index}}" src="{{item.value}}" alt="" />
+        </view>
+        <view wx:else class="empty">抱歉哦，暂无详情图</view>
+    </view>
+
+    <!-- 底部 -->
+    <view class="footer">
+        <view class="user-select">
+            <view class="collect" bindtap="handlerCollect">
+                <image mode="widthFix" src="{{collect}}"></image>
+                <text>收藏</text>
+            </view>
+            <!-- 正常购买选择 -->
+            <view class="xianshi-select"  wx:if="{{isStart}}">
+                <view class="add-shopping-cart" bindtap="handlerAddCart">
+                    <text class="begin">加入购物车</text>
+                </view>
+                <view class="chipped" bindtap="handlerLoot">
+                    <text class="begin">{{activeState}}</text>
+                </view>
+            </view>
+    
+             <!-- 拼团选择 -->
+            <view class="pt-select" wx:else>
+                <view class="alone-buy" bindtap="handlerAloneBuy">
+                    <text class="price">￥{{goodsDetail.goods_info.goods_price}}</text>
+                    <text class="buy">单独购买</text>
+                </view>
+                <view class="organization-pt" bindtap="handlerPt">
+                    <text class="price">￥105</text>
+                    <text class="begin">发起拼团</text>
+                </view>
+            </view>
+        </view>
+        <navigator class="cart-hint" open-type ="switchTab" url="../cart/cart">
+            <view class="icon">
+                <image src='../../../images/detail-img/cart-2@2x.png'></image>
+                <text>{{goodsTotal}}</text>
+            </view>
+            <view class="count-down" hidden="{{goodsTotal == 0}}">{{clock.minutes}} : {{clock.seconds}}</view>
+        </navigator>
+    </view>
+
+    <!-- 遮罩层 -->
+    <view class="mask" hidden="{{maskFlag}}" bindtap="handlerGoodsSelectHide"></view>
+    <view class="pt-mask" hidden="{{PTMaskFlag}}" catchtouchmove="stopPageScroll"></view>
+
+    <!--  商品选择框 -->
+    <view class="goods-select" style="display:  {{ goodsSelect? 'flex' :  'none' }}">
+        <icon class="close" type="clear" size="24" color="rgb(127,127,127)" bindtap="handlerGoodsSelectHide"></icon>
+        <view class="goods">
+            <view class="goods-image">
+                <image mode="aspectFit" src='{{goodsDetail.goods_image[0]}}'></image>
+            </view>
+            <view class="parameter">
+                <!-- 判断商品为拼团或者秒杀 -->
+                <text class="price" wx:if="{{isStart}}">￥{{selectGoodsPrice || goodsDetail.goods_info.goods_promotion_price }}</text>
+                <text class="price" wx:else>￥{{selectGoodsPrice || goodsDetail.goods_info.goods_assemble_price }}</text>
+                <text class="selected">已选择：{{getSelectedValue}}</text>
+            </view>
+        </view>
+        <view class="goods-classify">
+            <view wx:for="{{goodsClassify}}" wx:key="index" data-index="{{index}}">
+                <view class="color-title">{{item.names}}</view>
+                <view class="classify">
+                    <text class=" {{subItem.b == isGoodsSelect? 'select-color' : 'colors'}}" wx:for="{{item.values}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" data-index="{{subIndex}}" data-value="{{subItem.a}}" data-status="{{subItem.b}}" bindtap="handlerGoodsSelect">{{subItem.a}}</text>
+                </view>
+            </view>
+        </view>
+        <!-- <view class="size">
+            <view class="size-title">尺码</view>
+            <view class="yardage">
+                <text class="{{index == goodsSizeIndex? 'select-color' : 'sizes'}}" wx:for="{{goodsSize}}" wx:key="{{index}}" data-index="{{index}}" bindtap="handlerGoodsSize">{{item}}</text>
+            </view>
+        </view> -->
+        <view class="buy-num">
+            <text class="buy-title">购买数量</text>
+            <view class="quantity-position">
+                <text class="subtract" bindtap="handlerGoodsSubtract">-</text>
+                <text class="number">{{buyNumber}}</text>
+                <text class="add" bindtap="handlerGoodsAdd">+</text>
+            </view>
+        </view>
+        <view class="buy" bindtap="handlerSubmit">{{ptOrBuy}}</view>
+    </view>
+
+    
+
+    <!-- 查看正在拼团正在拼团 -->
+
+    <view class="begin-pt" hidden="{{nowPt}}">
+        <view class="title">正在拼团</view>
+        <icon class="close" type="clear" size="24" color="rgb(178,178,178)" bindtap="handlerClose"></icon>
+        <view class="pt-info">
+            <image src='../../../images/detail-img/fengjing.jpg'></image>
+            <view class="details">
+                <view class="user-name">hello-259</view>
+                <view class="end-time">还差1人,距结束12时08分</view>
+            </view>
+            <view class="go-btn">去拼团</view>
+        </view>
+        <view class="pt-info">
+            <image src='../../../images/detail-img/fengjing.jpg'></image>
+            <view class="details">
+                <view class="user-name">hello-259</view>
+                <view class="end-time">还差1人,距结束12时08分</view>
+            </view>
+            <view class="go-btn">去拼团</view>
+        </view>
+        <view class="pt-info">
+            <image src='../../../images/detail-img/fengjing.jpg'></image>
+            <view class="details">
+                <view class="user-name">hello-259</view>
+                <view class="end-time">还差1人,距结束12时08分</view>
+            </view>
+            <view class="go-btn">去拼团</view>
+        </view>
+        <view class="pt-info">
+            <image src='../../../images/detail-img/fengjing.jpg'></image>
+            <view class="details">
+                <view class="user-name">hello-259</view>
+                <view class="end-time">还差1人,距结束12时08分</view>
+            </view>
+            <view class="go-btn">去拼团</view>
+        </view>
+        <view class="pt-info">
+            <image src='../../../images/detail-img/fengjing.jpg'></image>
+            <view class="details">
+                <view class="user-name">hello-259</view>
+                <view class="end-time">还差1人,距结束12时08分</view>
+            </view>
+            <view class="go-btn">去拼团</view>
+        </view>
+        <view class="pt-info">
+            <image src='../../../images/detail-img/fengjing.jpg'></image>
+            <view class="details">
+                <view class="user-name">hello-259</view>
+                <view class="end-time">还差1人,距结束12时08分</view>
+            </view>
+            <view class="go-btn">去拼团</view>
+        </view>
+    </view>
+
+
+    <!-- 去拼团 -->
+    <view class="many-shopping" hidden="{{goToPt}}">
+        <view class="title">参与用户昵称的拼团</view>
+        <icon class="close" type="clear" size="24" color="rgb(178,178,178)" bindtap="goToClose"></icon>
+        <view class="pt-info">仅剩<text>1个</text>名额，<text>3:20:50</text>后结束</view>
+        <text class="itself">拼主</text>
+        <view class="user-head">
+            <image
+            class="{{ptImgList.length > 3 ? 'image2': 'image1'}}" 
+            wx:for="{{ptImgList}}"
+            wx:key="index"
+            src='{{item}}'></image>
+        </view>
+        <view class="go-to">去拼团</view>
+    </view>
+</view>
